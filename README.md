@@ -1,8 +1,8 @@
 # 👨‍💻 Vinícius França
 
-**`Aspirante a Cientista de Dados`**
+**`Aspirante a Desenvolvedor de Software`**
 
-Me chamo Vinícius França de Santana, tenho 23 anos e sou natural de Catende Pernambuco. Concluí o ensino médio na ETE Palmares,com o curso técnico em Análise e Desenvolvimento de Sistemas. Atualmente, estou cursando Sistemas de Informação no CIn/UFPE. Sou um entusiasta da Tecnologia que está disposto a ultrapassar qualquer obstáculo do conhecimento para atingir meus objetivos.
+Me chamo Vinícius França de Santana, tenho 23 anos e sou natural de Catende Pernambuco. Atualmente, estou cursando Sistemas de Informação no CIn/UFPE. Sou um entusiasta da Tecnologia que está disposto a ultrapassar qualquer obstáculo do conhecimento para atingir meus objetivos.
 
 <p>
       <a href="https://github.com/VFSVINI?tab=followers">
