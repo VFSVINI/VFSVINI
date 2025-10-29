@@ -55,6 +55,17 @@ Me chamo Vinícius França de Santana, tenho 23 anos e sou natural de Catende Pe
 
 <img 
     align="left" 
+    alt="Java" 
+    title="Java"
+    width="30px" 
+    style="padding-right: 10px;" 
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/java-original.svg" 
+/>
+
+
+
+<img 
+    align="left" 
     alt="C++" 
     title="C++"
     width="30px" 
