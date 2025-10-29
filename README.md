@@ -46,11 +46,11 @@ Me chamo Vinícius França de Santana, tenho 23 anos e sou natural de Catende Pe
 
 <img 
     align="left" 
-    alt="Node" 
-    title="Node"
+    alt="NodeJs" 
+    title="NodeJs"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/node/node-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"          
 />
 
 <img 
