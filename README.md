@@ -2,7 +2,7 @@
 
 **`Aspirante a Desenvolvedor de Software`**
 
-Me chamo Vinícius França de Santana,atualmente, estou cursando Sistemas de Informação no CIn/UFPE. Sou um entusiasta da Tecnologia que está disposto a ultrapassar qualquer obstáculo do conhecimento para atingir meus objetivos.
+Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de Informação no CIn/UFPE. Sou um entusiasta da Tecnologia que está disposto a ultrapassar qualquer obstáculo do conhecimento para atingir meus objetivos.
 
 <p>
       <a href="https://github.com/VFSVINI?tab=followers">
