@@ -11,11 +11,9 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
          <img alt="Total de Estrelas" title="Total de Estrelas no Github" src="https://custom-icon-badges.demolab.com/github/stars/VFSVINI?color=55960c&style=for-the-badge&labelColor=488207&logo=star&label=estrelas"/></a>
    </p>
 
-   ---
+---
 
-   ### 🤖 Linguagens e Tecnologias
-
-       
+### 🤖 Linguagens e Tecnologias
 
 <img 
     align="left" 
@@ -161,8 +159,10 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"          
 />
 
+<br clear="left"/>
 <br/>
-<br/>
+
+---
 
 ### 📉 Estatísticas
 
@@ -175,20 +175,23 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     src="https://github-readme-stats.vercel.app/api?username=VFSVINI&show_icons=true&theme=tokyonight&include_all_commits=true&locale=pt-br" 
   />
 
-<img 
+  <img 
       align="left" 
-      alt="GitHub Stats" 
+      alt="Linguagens mais usadas" 
       height="200" 
-      Style="padding-right: 10px;"
+      style="padding-right: 10px;"
       src="https://github-readme-stats.vercel.app/api/top-langs/?username=VFSVINI&theme=tokyonight&layout=compact&custom_title=Tecnologias&langs_count=7" 
   />
-
 </p>
 
+<br clear="left"/>
 
-                      
-    
-             
+---
 
+### 🐍 Cobrinha comendo meus commits
 
-   
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/github-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/github-snake.svg" />
+  <img alt="Cobrinha comendo meus commits" src="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/github-snake.svg" />
+</picture>
