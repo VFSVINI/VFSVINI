@@ -189,7 +189,6 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
 ---
 
 ### Histórico de Commits
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/github-snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/github-snake.svg" />
