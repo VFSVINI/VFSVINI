@@ -48,7 +48,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="NodeJs"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" 
 />
 
 <img 
@@ -57,7 +57,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="React"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" 
 />
 
 <img 
@@ -84,7 +84,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="Spring"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" 
 />
 
 <img 
@@ -93,7 +93,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="Angular"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" 
 />
 
 <img 
@@ -102,7 +102,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="Postman"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" 
 />
 
 <img 
@@ -111,7 +111,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="Insomnia"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/insomnia/insomnia-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/insomnia/insomnia-original.svg" 
 />
 
 <img 
@@ -120,7 +120,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="Swagger"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swagger/swagger-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swagger/swagger-original.svg" 
 />
 
 <img 
@@ -129,7 +129,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="JUnit"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original.svg" 
 />
 
 <img 
@@ -138,7 +138,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="MySQL"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" 
 />
 
 <img 
@@ -147,7 +147,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="PostgreSQL"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" 
 />
 
 <img 
@@ -156,7 +156,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     title="mongoDB"
     width="30px" 
     style="padding-right: 10px;" 
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"          
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" 
 />
 
 <br clear="left"/>
@@ -166,25 +166,18 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
 
 ### 📉 Estatísticas
 
-<p>
+<p align="left">
   <img 
-    align="left" 
+    height="180" 
+    src="https://github-readme-stats.vercel.app/api?username=VFSVINI&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" 
     alt="GitHub Stats" 
-    height="200" 
-    style="padding-right: 10px;" 
-    src="https://github-readme-stats.vercel.app/api?username=VFSVINI&show_icons=true&theme=tokyonight&include_all_commits=true&locale=pt-br" 
   />
-
   <img 
-      align="left" 
-      alt="Linguagens mais usadas" 
-      height="200" 
-      style="padding-right: 10px;"
-      src="https://github-readme-stats.vercel.app/api/top-langs/?username=VFSVINI&theme=tokyonight&layout=compact&custom_title=Tecnologias&langs_count=7" 
+    height="180" 
+    src="https://github-readme-stats.vercel.app/api/top-langs/?username=VFSVINI&theme=tokyonight&layout=compact&custom_title=Tecnologias&langs_count=7&hide_progress=false" 
+    alt="Linguagens mais usadas" 
   />
 </p>
-
-<br clear="left"/>
 
 ---
 
