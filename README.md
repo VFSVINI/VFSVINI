@@ -172,7 +172,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
     alt="GitHub Stats" 
     height="200" 
     style="padding-right: 10px;" 
-    src="https://github-readme-stats.vercel.app/api?username=VFSVINI&show_icons=true&theme=tokyonight&include_all_commits=true&locale=pt-br" 
+    src="https://github-readme-stats-vfsvini.vercel.app/api?username=VFSVINI&show_icons=true&theme=tokyonight&include_all_commits=true&locale=pt-br" 
   />
 
   <img 
@@ -180,7 +180,7 @@ Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de In
       alt="Linguagens mais usadas" 
       height="200" 
       style="padding-right: 10px;"
-      src="https://github-readme-stats.vercel.app/api/top-langs/?username=VFSVINI&theme=tokyonight&layout=compact&custom_title=Tecnologias&langs_count=7" 
+      src="https://github-readme-stats-vfsvini.vercel.app/api/top-langs/?username=VFSVINI&theme=tokyonight&layout=compact&custom_title=Tecnologias&langs_count=7" 
   />
 </p>
 
