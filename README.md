@@ -2,8 +2,7 @@
 
 `Software Developer` · `Information Systems @ CIn-UFPE`
 
-Information Systems student at **CIn-UFPE** (Center for Informatics — Federal University of Pernambuco) and Software Developer working across **backend engineering**, **full-stack web development**, and **software architecture**, with a focus on **Clean Architecture** and **scalable systems**.
-
+Information Systems student at **CIn-UFPE** and Software Developer working across **backend engineering**, **full-stack web development**, and **software architecture**, focusing on **Clean Architecture** and **scalable systems**.
 <p>
       <a href="https://github.com/VFSVINI?tab=followers">
          <img alt="Seguidores" title="Me Siga no Github" src="https://custom-icon-badges.demolab.com/github/followers/VFSVINI?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=SEGUIDORES&logoColor=white"/></a>
