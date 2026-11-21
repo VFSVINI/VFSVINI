@@ -1,8 +1,8 @@
-# 👨‍💻 Vinícius França
+## 🧑‍💻 Vinícius França
 
-**`Aspirante a Desenvolvedor de Software`**
+`Software Developer` · `Information Systems @ CIn-UFPE`
 
-Me chamo Vinícius França de Santana, atualmente, estou cursando Sistemas de Informação no CIn/UFPE. Sou um entusiasta da Tecnologia que está disposto a ultrapassar qualquer obstáculo do conhecimento para atingir meus objetivos.
+Information Systems student at **CIn-UFPE** (Center for Informatics — Federal University of Pernambuco) and Software Developer working across **backend engineering**, **full-stack web development**, and **software architecture**, with a focus on **Clean Architecture** and **scalable systems**.
 
 <p>
       <a href="https://github.com/VFSVINI?tab=followers">
