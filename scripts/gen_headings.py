@@ -8,7 +8,7 @@ from texts import T
 W = 900
 YELLOW, CYAN = "#FFE81F", "#4BD5EE"
 
-HEADINGS = [(slug, T[f"h_{slug}"]) for slug in ("transmission", "cast", "arsenal", "dossier", "missions", "snake")]
+HEADINGS = [(slug, T[f"h_{slug}"]) for slug in ("transmission", "duel", "arsenal", "dossier", "missions", "snake")]
 
 DEFS = f"""<defs>
 <linearGradient id="hb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#05070f"/><stop offset="1" stop-color="#0d1530"/></linearGradient>
@@ -37,29 +37,13 @@ def heading(slug, title):
     (OUT / f"h-{slug}.svg").write_text(svg, encoding="utf-8")
 
 
-def xpnote():
-    line = T["xp_line1"]
-    line2 = T["xp_line2"]
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} 64" width="{W}" height="64" role="img" aria-label="{T["alt_xp"]}">
-<rect width="{W}" height="64" rx="12" fill="url(#hb)"/>{DEFS}
-<rect x="0.5" y="0.5" width="{W - 1}" height="63" rx="12" fill="none" stroke="{CYAN}" stroke-opacity="0.3"/>
-{text_path(GOTHIC, line, 15, 1.4, W / 2, 28, "#B6C3EE", "middle")}
-{text_path(GOTHIC, line2, 12, 2.4, W / 2, 48, "#6B7AA8", "middle")}
-</svg>
-"""
-    (OUT / "xpnote.svg").write_text(svg, encoding="utf-8")
-
-
 def footer():
-    h = 150
-    rows = T["footer_rows"]
-    out = [text_path(JEDI, T["footer_title"], 26, 5, W / 2, 50, YELLOW, "middle", max_w=W - 80, extra='filter="url(#hg)"')]
-    for i, r in enumerate(rows):
-        out.append(text_path(GOTHIC, r, 11.5, 1.6, W / 2, 84 + i * 18, "#8EA3D6", "middle", max_w=W - 60))
+    h = 96
+    title = text_path(JEDI, T["footer_title"], 26, 5, W / 2, 60, YELLOW, "middle", max_w=W - 80, extra='filter="url(#hg)"')
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {h}" width="{W}" height="{h}" role="img" aria-label="{T["alt_footer"]}">
 <rect width="{W}" height="{h}" rx="12" fill="url(#hb)"/>{DEFS}
 <rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="12" fill="none" stroke="{YELLOW}" stroke-opacity="0.35"/>
-{"".join(out)}
+{title}
 </svg>
 """
     (OUT / "footer.svg").write_text(svg, encoding="utf-8")
@@ -68,6 +52,5 @@ def footer():
 if __name__ == "__main__":
     for slug, title in HEADINGS:
         heading(slug, title)
-    xpnote()
     footer()
-    print("ok:", ", ".join(f"h-{s}" for s, _ in HEADINGS), "xpnote footer")
+    print("ok:", ", ".join(f"h-{s}" for s, _ in HEADINGS), "footer")

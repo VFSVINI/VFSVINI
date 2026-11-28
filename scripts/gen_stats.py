@@ -108,6 +108,10 @@ RANKS = [(m, T["ranks"][i], c, s) for i, (m, _, c, s) in enumerate(RANKS)]
 
 
 def xp_of(d):
+    """XP = commits + 5*PRs + 3*issues + 2*reviews + 10*estrelas + 2*repositorios.
+
+    Atualizado a cada 12h pelo workflow. A formula nao aparece no perfil de proposito.
+    """
     return d["commits"] + 5 * d["prs"] + 3 * d["issues"] + 2 * d["reviews"] + 10 * d["stars"] + 2 * d["repos"]
 
 

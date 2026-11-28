@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-STEPS = ["gen_static.py", "gen_characters.py", "gen_arsenal.py", "gen_transmission.py", "gen_headings.py", "gen_readme.py"]
+STEPS = ["gen_static.py", "gen_duel.py", "gen_arsenal.py", "gen_transmission.py", "gen_headings.py", "gen_readme.py"]
 
 if __name__ == "__main__":
     for step in STEPS:
