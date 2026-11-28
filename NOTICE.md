@@ -14,9 +14,9 @@ dos filmes.
 
 ## Como o XP e as patentes funcionam
 `XP = commits + 5 × pull requests + 3 × issues + 2 × revisões + 10 × estrelas + 2 × repositórios`
-(`scripts/gen_stats.py`, função `xp_of`). A escada, do mais fraco ao mais poderoso, começa com Ahsoka Tano e alterna Ordem Jedi e Ordem Sith:
-Obi-Wan Kenobi, Darth Maul, Luke Skywalker, Darth Tyranus (Conde Dooku), Mace Windu, Darth Vader,
-Darth Sidious e, no topo, Yoda. Os cortes de XP estão em `RANKS`.
+(`scripts/gen_stats.py`, função `xp_of`). A escada vai do mais fraco ao mais poderoso, pela força canônica de cada um: Anakin Skywalker
+(Padawan), Darth Maul, Obi-Wan Kenobi (que o derrota), Darth Tyranus (Conde Dooku), Luke Skywalker,
+Mace Windu, Darth Vader, Darth Sidious e, no topo, Yoda. Os cortes de XP estão em `RANKS`.
 
 ## Como gerar
 - Estático (`assets/` e `README.md`): `PROFILE_LANG=pt python scripts/build_all.py`
