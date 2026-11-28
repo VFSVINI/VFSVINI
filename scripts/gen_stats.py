@@ -98,9 +98,10 @@ RANKS = [
     (1800, "SITH APPRENTICE", "DARTH MAUL", "dark"),
     (3200, "JEDI MASTER", "LUKE SKYWALKER", "light"),
     (5500, "COUNCIL MASTER", "MACE WINDU", "light"),
-    (9000, "SITH LORD", "DARTH VADER", "dark"),
-    (14000, "GRAND MASTER", "YODA", "light"),
-    (20000, "SITH EMPEROR", "DARTH SIDIOUS", "dark"),
+    (8000, "SITH COUNT", "DARTH TYRANUS", "dark"),
+    (11000, "SITH LORD", "DARTH VADER", "dark"),
+    (15000, "SITH EMPEROR", "DARTH SIDIOUS", "dark"),
+    (22000, "GRAND MASTER", "YODA", "light"),
 ]
 
 
