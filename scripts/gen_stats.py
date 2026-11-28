@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from texts import T
+
 USER = os.environ.get("GITHUB_USER", "VFSVINI")
 TOKEN = os.environ["GITHUB_TOKEN"]
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else "dist")
@@ -100,6 +102,9 @@ RANKS = [
     (14000, "GRAND MASTER", "YODA", "light"),
     (20000, "SITH EMPEROR", "DARTH SIDIOUS", "dark"),
 ]
+
+
+RANKS = [(m, T["ranks"][i], c, s) for i, (m, _, c, s) in enumerate(RANKS)]
 
 
 def xp_of(d):

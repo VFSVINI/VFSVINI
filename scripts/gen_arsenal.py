@@ -7,6 +7,7 @@ import math
 import re
 from pathlib import Path
 
+from texts import T
 from gen_static import GOTHIC, JEDI, OUT, outline
 
 ICONS = Path(__file__).resolve().parent / "icons"
@@ -14,10 +15,10 @@ ICONS = Path(__file__).resolve().parent / "icons"
 BLUE, YELLOW, RED = "#4BD5EE", "#FFE81F", "#FF5A5A"
 # (titulo da faixa, cor, [(arquivo, nome exibido)])
 BANDS = [
-    ("BACKEND", BLUE, [("java", "Java"), ("springboot", "Spring Boot"), ("go", "Go"), ("python", "Python")]),
-    ("FRONTEND", YELLOW, [("javascript", "JavaScript"), ("html5", "HTML5"), ("css3", "CSS3"),
+    (T["arsenal_bands"][0], BLUE, [("java", "Java"), ("springboot", "Spring Boot"), ("go", "Go"), ("python", "Python")]),
+    (T["arsenal_bands"][1], YELLOW, [("javascript", "JavaScript"), ("html5", "HTML5"), ("css3", "CSS3"),
                           ("threedotjs", "Three.js"), ("apacheecharts", "ECharts"), ("leaflet", "Leaflet")]),
-    ("DATA & INFRA", RED, [("postgresql", "PostgreSQL"), ("timescale", "TimescaleDB"), ("redis", "Redis"),
+    (T["arsenal_bands"][2], RED, [("postgresql", "PostgreSQL"), ("timescale", "TimescaleDB"), ("redis", "Redis"),
                            ("rabbitmq", "RabbitMQ"), ("docker", "Docker"), ("githubactions", "GitHub Actions"),
                            ("prometheus", "Prometheus")]),
 ]
@@ -74,8 +75,8 @@ def build():
         for i, (slug, name) in enumerate(items):
             rows.append(tile(start + i * SLOT, cy, slug, name, color, n))
             n += 1
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Arsenal: Java, Spring Boot, Go, Python, JavaScript, Three.js, ECharts, Leaflet, PostgreSQL, Redis, Docker e mais">
-<title>Arsenal tecnológico</title>
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{T["alt_arsenal"]}">
+<title>{T["h_arsenal"]}</title>
 <defs>
 <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
 <linearGradient id="bgA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05070f"/><stop offset="1" stop-color="#0d1530"/></linearGradient>

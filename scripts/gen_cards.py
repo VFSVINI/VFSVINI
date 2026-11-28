@@ -7,6 +7,7 @@ import math
 from xml.sax.saxutils import escape
 
 import gen_stats as gs
+from texts import T
 from fontkit import GOTHIC, JEDI, text_path, text_width
 
 OUT = gs.OUT
@@ -51,15 +52,15 @@ def card_rank(d):
     level = int(math.sqrt(xp / 10)) + 1
     w, h = 495, 232
     rows = [
-        ("COMMITS", d["commits"], BLUE),
-        ("PULL REQUESTS", d["prs"], GREEN),
-        ("ISSUES", d["issues"], YELLOW),
-        ("CODE REVIEWS", d["reviews"], "#c58cff"),
-        ("STARS", d["stars"], "#ffb347"),
-        ("MISSIONS (REPOS)", d["repos"], RED),
+        (T["lbl_commits"], d["commits"], BLUE),
+        (T["lbl_prs"], d["prs"], GREEN),
+        (T["lbl_issues"], d["issues"], YELLOW),
+        (T["lbl_reviews"], d["reviews"], "#c58cff"),
+        (T["lbl_stars"], d["stars"], "#ffb347"),
+        (T["lbl_repos"], d["repos"], RED),
     ]
     inner = [
-        text_path(JEDI, "JEDI DOSSIER", 15, 3, 26, 36, YELLOW),
+        text_path(JEDI, T["dossier"], 15, 3, 26, 36, YELLOW),
         text_path(GOTHIC, d["name"].upper(), 12, 2, w - 24, 36, "#6b7aa8", "end"),
     ]
     for i, (lab, val, col) in enumerate(rows):
@@ -76,22 +77,22 @@ def card_rank(d):
         f'stroke-dasharray="{circ:.1f}" stroke-dashoffset="{circ:.1f}" transform="rotate(-90 {cx} {cy})" filter="url(#glowrank)">'
         f'<animate attributeName="stroke-dashoffset" from="{circ:.1f}" to="{off:.1f}" dur="2.4s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" keyTimes="0;1"/></circle>'
     )
-    inner.append(text_path(GOTHIC, "LEVEL", 12, 3, cx, cy - 10, "#8ea3d6", "middle"))
+    inner.append(text_path(GOTHIC, T["lbl_level"], 12, 3, cx, cy - 10, "#8ea3d6", "middle"))
     inner.append(text_path(JEDI, str(level), 36, 2, cx, cy + 26, "#ffffff", "middle"))
     inner.append(text_path(JEDI, name, 13, 2, cx, cy + 66, YELLOW, "middle", max_w=170))
     inner.append(text_path(GOTHIC, char, 13, 2.2, cx, cy + 84, accent, "middle", max_w=170))
     bw = w - 52
     if nxt_min != gs.RANKS[idx][0]:
-        label = f"XP {num(xp)} / {num(nxt_min)}   NEXT: {nxt_char}"
+        label = f"XP {num(xp)} / {num(nxt_min)}   {T['lbl_next']}: {nxt_char}"
     else:
-        label = f"XP {num(xp)}   MAX LEVEL"
+        label = f"XP {num(xp)}   {T['lbl_max']}"
     inner.append(text_path(GOTHIC, label, 12, 1.5, 26, 199, "#8ea3d6", max_w=330))
     inner.append(
         f'<rect x="26" y="206" width="{bw}" height="9" rx="4.5" fill="#1b2745"/>'
         f'<rect x="26" y="206" width="0" height="9" rx="4.5" fill="url(#{bar})" filter="url(#glowrank)">'
         f'<animate attributeName="width" from="0" to="{bw * prog:.1f}" dur="2.4s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" keyTimes="0;1"/></rect>'
     )
-    title = f"Jedi dossier: {char}, {name}, level {level}, {xp} XP"
+    title = f"{T['alt_rank']}: {char}, {name}, {T['lbl_level'].lower()} {level}, {xp} XP"
     (OUT / "rank.svg").write_text(frame(w, h, title, "\n".join(inner), "rank"), encoding="utf-8")
 
 
@@ -105,8 +106,8 @@ def ladder(d):
     y0 = 78
     xs = [40 + i * step for i in range(n)]
     inner = [
-        text_path(JEDI, "RANK LADDER", 15, 3, 26, 36, YELLOW),
-        text_path(GOTHIC, "FROM THE WEAKEST TO THE MOST POWERFUL", 11, 3, w - 24, 36, "#6b7aa8", "end"),
+        text_path(JEDI, T["ladder_title"], 15, 3, 26, 36, YELLOW),
+        text_path(GOTHIC, T["ladder_sub"], 11, 3, w - 24, 36, "#6b7aa8", "end"),
         f'<line x1="{xs[0]}" y1="{y0}" x2="{xs[-1]}" y2="{y0}" stroke="#1b2745" stroke-width="4" stroke-linecap="round"/>',
         f'<line x1="{xs[0]}" y1="{y0}" x2="{xs[cur]}" y2="{y0}" stroke="url(#saberladder)" stroke-width="4" stroke-linecap="round" filter="url(#glowladder)"/>',
     ]
@@ -126,8 +127,8 @@ def ladder(d):
         inner.append(text_path(GOTHIC, title, 9.5, 1.3, x, y0 + 52, col if reached else "#4a5a8f", "middle", max_w=step - 6))
         if i == cur:
             inner.append(f'<path d="M{x:.1f} {y0 + 62}l-5 8h10z" fill="{YELLOW}"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></path>')
-            inner.append(text_path(JEDI, "YOU ARE HERE", 10, 2, x, y0 + 90, YELLOW, "middle"))
-    label = f"Rank ladder: current rank {gs.RANKS[cur][1]}, {gs.RANKS[cur][2]}"
+            inner.append(text_path(JEDI, T["ladder_here"], 10, 2, x, y0 + 90, YELLOW, "middle"))
+    label = f"{T['ladder_title'].title()}: {gs.RANKS[cur][1]}, {gs.RANKS[cur][2]}"
     (OUT / "ladder.svg").write_text(frame(w, h, label, "\n".join(inner), "ladder"), encoding="utf-8")
 
 
@@ -136,7 +137,7 @@ def card_galaxy(d):
     total = sum(v["size"] for _, v in d["langs"]) or 1
     w, h = 495, 232
     cx, cy = 128, 124
-    inner = [text_path(JEDI, "LANGUAGE SYSTEM", 15, 3, 26, 36, YELLOW)]
+    inner = [text_path(JEDI, T["galaxy_title"], 15, 3, 26, 36, YELLOW)]
     inner.append(
         f'<circle cx="{cx}" cy="{cy}" r="34" fill="url(#sungalaxy)"><animate attributeName="r" values="30;36;30" dur="4s" repeatCount="indefinite"/></circle>'
         f'<circle cx="{cx}" cy="{cy}" r="11" fill="#fff7b0"/>'
@@ -162,7 +163,7 @@ def card_galaxy(d):
             f'<rect x="290" y="{y + 6}" width="{w - 316}" height="2.5" rx="1.2" fill="#1b2745"/>'
             f'<rect x="290" y="{y + 6}" width="0" height="2.5" rx="1.2" fill="{v["color"]}"><animate attributeName="width" from="0" to="{(w - 316) * share:.1f}" dur="2s" fill="freeze"/></rect>'
         )
-    (OUT / "galaxy.svg").write_text(frame(w, h, "Solar system of the most used languages", "\n".join(inner), "galaxy"), encoding="utf-8")
+    (OUT / "galaxy.svg").write_text(frame(w, h, T["alt_galaxy"], "\n".join(inner), "galaxy"), encoding="utf-8")
 
 
 def pill(slug, label, value, color, aria):
@@ -188,9 +189,9 @@ def pill(slug, label, value, color, aria):
 
 
 def badges(d):
-    pill("followers", "ALLIES OF THE REBELLION", str(d["followers"]), YELLOW, f"{d['followers']} followers")
-    pill("squadron", "SQUADRON", "CIN-UFPE", BLUE, "Squadron: CIn-UFPE")
-    pill("mission", "CURRENT MISSION", "MERIDIAN-WEALTH", RED, "Current mission: meridian-wealth")
+    pill("followers", T["badge_followers"], str(d["followers"]), YELLOW, f"{d['followers']} {T['alt_followers'].lower()}")
+    pill("squadron", T["badge_squadron"], "CIN-UFPE", BLUE, T["alt_squadron"])
+    pill("mission", T["badge_mission"], "MERIDIAN-WEALTH", RED, T["alt_mission"])
 
 
 def wrap(text, font, size, spacing, max_w, max_lines=2):
@@ -215,7 +216,7 @@ REPO_Q = "query($o:String!,$n:String!){repository(owner:$o,name:$n){name descrip
 def missions():
     for i, name in enumerate(MISSIONS):
         r = gs.gql(REPO_Q, o=gs.USER, n=name)["repository"]
-        desc = r["description"] or "No briefing yet. A mission still hiding in the shadows."
+        desc = r["description"] or T["mission_fallback"]
         lang = r["primaryLanguage"] or {"name": "Unknown", "color": "#8b949e"}
         w, h = 440, 132
         inner = [text_path(JEDI, r["name"].upper(), 17, 2, 26, 44, YELLOW, max_w=w - 52)]
@@ -226,7 +227,7 @@ def missions():
         star = "M0 -6L1.8 -1.9 6.2 -1.7 2.8 1.1 3.9 5.4 0 3 -3.9 5.4 -2.8 1.1 -6.2 -1.7 -1.8 -1.9Z"
         inner.append(f'<path transform="translate({w - 74} 113)" d="{star}" fill="#ffb347"/>')
         inner.append(text_path(GOTHIC, str(r["stargazerCount"]), 13, 0.5, w - 60, 118, "#ffffff"))
-        (OUT / f"mission-{i + 1}.svg").write_text(frame(w, h, f"Mission: {r['name']}", "\n".join(inner), f"m{i}"), encoding="utf-8")
+        (OUT / f"mission-{i + 1}.svg").write_text(frame(w, h, f"{T['badge_mission'].title()}: {r['name']}", "\n".join(inner), f"m{i}"), encoding="utf-8")
 
 
 if __name__ == "__main__":

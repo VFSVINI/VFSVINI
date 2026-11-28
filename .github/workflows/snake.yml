@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+# Idioma dos textos gerados (pt ou en). Veja scripts/texts.py.
+env:
+  PROFILE_LANG: pt
+
 jobs:
   generate:
     runs-on: ubuntu-latest

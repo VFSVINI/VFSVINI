@@ -1,4 +1,5 @@
 """Gera assets/transmission.svg: cartao holografico 'Incoming Transmission' com os dados do perfil."""
+from texts import T
 from gen_static import GOTHIC, JEDI, OUT, outline, text_width
 
 W, H = 900, 280
@@ -6,14 +7,7 @@ CYAN, YELLOW = "#4BD5EE", "#FFE81F"
 X0, XV = 292, 452  # coluna dos rotulos e dos valores
 DIM = 'opacity="0.75"'
 
-ROWS = [
-    ("NAME", "Vinícius França"),
-    ("ORDER", "Information Systems @ CIn-UFPE"),
-    ("CLASS", "Backend & Full Stack Developer"),
-    ("FOCUS", "Clean Architecture · Scalable Systems · FinTech"),
-    ("MISSION", "Turn data into decisions, one clean commit at a time"),
-    ("BASE", "Recife, Brazil"),
-]
+ROWS = T["tx_rows"]
 
 
 def left(font, text, size, spacing, x, y, fill, extra="", max_w=None):
@@ -57,8 +51,8 @@ def build():
             f'{left(GOTHIC, label, 14, 2.5, X0, y - 2, CYAN, DIM)}'
             f'{left(GOTHIC, value, 20, 0.6, XV, y, "#EAF2FF", max_w=W - 32 - XV)}</g>'
         )
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Incoming transmission: Vinícius França, Information Systems at CIn-UFPE, Backend and Full Stack Developer, Recife, Brazil">
-<title>Incoming transmission</title>
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{T["alt_transmission"]}">
+<title>{T["tx_title"]}</title>
 <defs>
 <linearGradient id="bgT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04070f"/><stop offset="1" stop-color="#0a1830"/></linearGradient>
 <linearGradient id="beam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="{CYAN}" stop-opacity="0.45"/><stop offset="1" stop-color="{CYAN}" stop-opacity="0"/></linearGradient>
@@ -72,9 +66,9 @@ def build():
 <rect width="{W}" height="{H}" fill="url(#scanT)"/>
 <rect y="-40" width="{W}" height="40" fill="{CYAN}" opacity="0.07"><animate attributeName="y" values="-40;{H}" dur="4.5s" repeatCount="indefinite"/></rect>
 {hologram(150, 118, 62)}
-{left(JEDI, "INCOMING TRANSMISSION", 15, 3, X0, 50, YELLOW)}
+{left(JEDI, T["tx_title"], 15, 3, X0, 50, YELLOW)}
 <circle cx="{W - 40}" cy="44" r="4" fill="#ff5a5a"><animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/></circle>
-{left(GOTHIC, "SIGNAL STRONG", 12, 3, W - 168, 49, "#8ea3d6")}
+{left(GOTHIC, T["tx_signal"], 12, 3, W - 168, 49, "#8ea3d6")}
 <line x1="{X0}" y1="64" x2="{W - 30}" y2="64" stroke="{CYAN}" stroke-opacity="0.35"/>
 {"".join(rows)}
 </g>

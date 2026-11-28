@@ -6,6 +6,7 @@ Projeto de fa; personagens e marcas pertencem a Lucasfilm/Disney.
 import random
 from pathlib import Path
 
+from texts import T
 from gen_static import GOTHIC, OUT, outline, starfield
 
 W, H = 900, 310
@@ -150,7 +151,7 @@ def chewie(cx):
 
 def build():
     rng = random.Random(5)
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="R2-D2, C-3PO, Darth Vader, Han Solo e Chewbacca">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{T["alt_cast"]}">
 <title>Elenco: R2-D2, C-3PO, Darth Vader, Han Solo e Chewbacca</title>
 <defs>
 <filter id="blur" x="-100%" y="-30%" width="300%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>

@@ -11,7 +11,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from fontkit import GOTHIC, JEDI, glyph_defs, outline_uses, text_width
-from quotes_data import quotes
+from texts import LANG, T
+import importlib
+
+quotes = importlib.import_module(f"quotes_{LANG}").quotes
 
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else "dist")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -68,7 +71,7 @@ def build():
             f'<g opacity="0"><animate attributeName="opacity" values="{";".join(str(v) for v in vals)}" '
             f'keyTimes="{";".join(fmt(k) for k in kt)}" dur="{total:g}s" repeatCount="indefinite"/>{body}{who_use}</g>'
         )
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Original maxims in the voice of Star Wars characters">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{T["alt_quotes"]}">
 <defs>
 {glyph_defs()}
 <linearGradient id="qb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#05070f"/><stop offset="1" stop-color="#0d1530"/></linearGradient>

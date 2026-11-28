@@ -17,6 +17,7 @@ YELLOW = "#FFE81F"
 BLUE = "#4BD5EE"
 FONT = "'Franklin Gothic Demi Cond','Franklin Gothic Medium','Arial Narrow','Helvetica Neue',Arial,sans-serif"
 
+from texts import T
 from fontkit import CEDILLA_DY, FONTS_DIR, GOTHIC, JEDI, glyph_defs, outline, outline_uses, text_path, text_width  # noqa: F401
 
 def fmt(v):
@@ -52,71 +53,7 @@ def starfield(rng, n=150):
     return "\n".join(parts)
 
 
-CRAWL = [
-    ("EPISODE IX", "head"),
-    ("THE LEGACY STRIKES BACK", "title"),
-    ("", ""),
-    ("The galaxy of software is in", ""),
-    ("turmoil. Empires of legacy code", ""),
-    ("stretch across every system, and", ""),
-    ("nobody remembers who built them,", ""),
-    ("or why.", ""),
-    ("", ""),
-    ("Deep in the Outer Rim, a lone", ""),
-    ("engineer receives a message: a", ""),
-    ("payment service is failing, the", ""),
-    ("pager is screaming, and it is, of", ""),
-    ("course, a Friday afternoon.", ""),
-    ("", ""),
-    ("The Old Monolith looms over the", ""),
-    ("repository like a Death Star.", ""),
-    ("Every change risks a chain", ""),
-    ("reaction. Its tests are few. Its", ""),
-    ("documentation is a rumor passed", ""),
-    ("between weary veterans.", ""),
-    ("", ""),
-    ("Yet hope survives. Rebel", ""),
-    ("developers gather in the quiet", ""),
-    ("hours, armed with unit tests,", ""),
-    ("clean architecture, and a", ""),
-    ("stubborn faith in refactoring.", ""),
-    ("", ""),
-    ("Their missions are never glorious.", ""),
-    ("They hunt a bug that vanishes", ""),
-    ("when observed. They bargain with", ""),
-    ("a flaky test that fails only at", ""),
-    ("midnight. They untangle a", ""),
-    ("dependency older than the", ""),
-    ("project itself.", ""),
-    ("", ""),
-    ("Some are tempted by the Dark", ""),
-    ("Side: the quick hack, the copied", ""),
-    ("snippet, the temporary fix that", ""),
-    ("lives forever. It is faster. It", ""),
-    ("is easier. And it always sends", ""),
-    ("the bill later.", ""),
-    ("", ""),
-    ("But a Jedi engineer knows the", ""),
-    ("way. Read before writing.", ""),
-    ("Measure before optimizing. Test", ""),
-    ("before shipping. Leave the code", ""),
-    ("better than you found it.", ""),
-    ("", ""),
-    ("Across the galaxy, pipelines turn", ""),
-    ("green, services scale, and a few", ""),
-    ("brave builders ship what others", ""),
-    ("called impossible, one pull", ""),
-    ("request at a time.", ""),
-    ("", ""),
-    ("Now a new mission begins: build", ""),
-    ("systems that survive contact with", ""),
-    ("reality, teach others what was", ""),
-    ("learned, and keep the lights of", ""),
-    ("the galaxy running...", ""),
-    ("", ""),
-    ("MAY THE FORCE BE WITH YOU,", "end"),
-    ("AND MAY YOUR BUILD STAY GREEN", "end"),
-]
+CRAWL = T["crawl"]
 
 # --- parametros da perspectiva ---
 HORIZON = 50.0          # y do ponto de fuga
@@ -197,7 +134,7 @@ def logo():
         f'<animate attributeName="opacity" values="{opac}" keyTimes="{ktxt}" dur="{TOTAL}s" repeatCount="indefinite"/>'
         f'<path transform="translate(0 -6)" stroke-width="2" d="{outline(JEDI, "VINÍCIUS", 120, 6, max_w=800)}"/>'
         f'<path transform="translate(0 112)" stroke-width="2" d="{outline(JEDI, "FRANÇA", 120, 6, max_w=800)}"/>'
-        f'<path transform="translate(0 -112)" stroke-width="0.4" d="{outline(GOTHIC, "SOFTWARE DEVELOPER", 24, 10)}"/>'
+        f'<path transform="translate(0 -112)" stroke-width="0.4" d="{outline(GOTHIC, T["logo_sub"], 24, 10, max_w=640)}"/>'
         f"</g>"
     )
 
@@ -209,15 +146,15 @@ def intro():
     return (
         f'<g opacity="0" fill="{BLUE}">'
         f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{ktxt}" dur="{TOTAL}s" repeatCount="indefinite"/>'
-        f'<path transform="translate(450 245)" d="{outline(GOTHIC, "A long time ago in a galaxy", 34, 1)}"/>'
-        f'<path transform="translate(450 290)" d="{outline(GOTHIC, "far, far away....", 34, 1)}"/></g>'
+        f'<path transform="translate(450 245)" d="{outline(GOTHIC, T["intro1"], 34, 1)}"/>'
+        f'<path transform="translate(450 290)" d="{outline(GOTHIC, T["intro2"], 34, 1)}"/></g>'
     )
 
 
 def build_crawl():
     rng = random.Random(77)
     lines = crawl_lines()
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="A long time ago in a galaxy far, far away... Vinícius França, Software Developer.">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{T["alt_crawl"]}">
 <title>Vinícius França — Software Developer</title>
 <defs>
 {glyph_defs()}
