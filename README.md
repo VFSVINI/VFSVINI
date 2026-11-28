@@ -32,16 +32,6 @@
 <img src="assets/divider.svg" alt="" width="100%"/>
 </div>
 
-<h2 align="center"><img src="assets/h-film.svg" alt="O Filme: 2 Minutos De Batalha" width="100%"/></h2>
-
-<p align="center">
-  <a href="https://github.com/VFSVINI/VFSVINI/blob/main/assets/duelo3d.webp"><img src="assets/duelo3d-poster.jpg" alt="Pôster do filme 3D de dois minutos com os duelos de sabres de luz. Clique para assistir." width="100%"/></a>
-</p>
-
-<div align="center">
-<img src="assets/divider.svg" alt="" width="100%"/>
-</div>
-
 <h2 align="center"><img src="assets/h-arsenal.svg" alt="Arsenal" width="100%"/></h2>
 
 <p align="center">
