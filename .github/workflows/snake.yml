@@ -24,6 +24,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: ${{ github.repository_owner }}
 
+      - name: Maxims carousel (shuffled every run)
+        run: python scripts/gen_quotes.py dist
+
       # Tema escuro: sabre verde devorando commits em tons de ouro imperial
       # Tema claro: sabre sith vermelho sobre dados em azul jedi
       - name: Gerar a cobrinha (sabre de luz)

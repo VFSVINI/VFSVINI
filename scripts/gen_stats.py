@@ -90,12 +90,12 @@ def collect():
 
 # (xp minimo, patente)
 RANKS = [
-    (0, "INICIADO"),
+    (0, "YOUNGLING"),
     (300, "PADAWAN"),
-    (900, "CAVALEIRO JEDI"),
-    (2000, "MESTRE JEDI"),
-    (4500, "MESTRE DO CONSELHO"),
-    (9000, "GRÃO-MESTRE"),
+    (900, "JEDI KNIGHT"),
+    (2000, "JEDI MASTER"),
+    (4500, "COUNCIL MASTER"),
+    (9000, "GRAND MASTER"),
 ]
 
 
@@ -148,10 +148,10 @@ def card_rank(d):
         ("PULL REQUESTS", d["prs"], GREEN),
         ("ISSUES", d["issues"], YELLOW),
         ("CODE REVIEWS", d["reviews"], "#c58cff"),
-        ("ESTRELAS", d["stars"], "#ffb347"),
-        ("MISSÕES (REPOS)", d["repos"], "#ff6b6b"),
+        ("STARS", d["stars"], "#ffb347"),
+        ("MISSIONS (REPOS)", d["repos"], "#ff6b6b"),
     ]
-    inner = [f'<text class="ttl" x="26" y="36">FICHA DO JEDI</text>',
+    inner = [f'<text class="ttl" x="26" y="36">JEDI DOSSIER</text>',
              f'<text x="{w - 24}" y="36" text-anchor="end" fill="#6b7aa8" font-size="12" letter-spacing="2">{escape(d["name"].upper())}</text>']
     for i, (lab, val, col) in enumerate(rows):
         y = 70 + i * 22
@@ -168,14 +168,14 @@ def card_rank(d):
         f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{BLUE}" stroke-width="8" stroke-linecap="round" '
         f'stroke-dasharray="{circ:.1f}" stroke-dashoffset="{circ:.1f}" transform="rotate(-90 {cx} {cy})" filter="url(#glowrank)">'
         f'<animate attributeName="stroke-dashoffset" from="{circ:.1f}" to="{off:.1f}" dur="2.4s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" keyTimes="0;1"/></circle>'
-        f'<text x="{cx}" y="{cy - 8}" text-anchor="middle" fill="#8ea3d6" font-size="12" letter-spacing="3">NÍVEL</text>'
+        f'<text x="{cx}" y="{cy - 8}" text-anchor="middle" fill="#8ea3d6" font-size="12" letter-spacing="3">LEVEL</text>'
         f'<text x="{cx}" y="{cy + 26}" text-anchor="middle" fill="#fff" font-size="40" font-weight="700">{level}</text>'
         f'<text x="{cx}" y="{cy + 72}" text-anchor="middle" fill="{YELLOW}" font-size="14" font-weight="700" letter-spacing="2">{name}</text>'
     )
     bw = w - 52
     fill_w = bw * prog
     if nxt_min == RANKS[idx][0]:
-        label = f"XP {xp:,} · NÍVEL MÁXIMO".replace(",", ".")
+        label = f"XP {xp:,} · MAX LEVEL".replace(",", ".")
     else:
         label = f"XP {xp:,} / {nxt_min:,} → {nxt_name}".replace(",", ".")
     inner.append(
@@ -184,7 +184,7 @@ def card_rank(d):
         f'<rect x="26" y="206" width="0" height="9" rx="4.5" fill="url(#saberrank)" filter="url(#glowrank)">'
         f'<animate attributeName="width" from="0" to="{fill_w:.1f}" dur="2.4s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" keyTimes="0;1"/></rect>'
     )
-    (OUT / "rank.svg").write_text(frame(w, h, f"Ficha do Jedi: {name}, nível {level}, {xp} XP", "\n".join(inner), "rank"), encoding="utf-8")
+    (OUT / "rank.svg").write_text(frame(w, h, f"Jedi dossier: {name}, level {level}, {xp} XP", "\n".join(inner), "rank"), encoding="utf-8")
 
 
 def card_galaxy(d):
@@ -192,7 +192,7 @@ def card_galaxy(d):
     total = sum(v["size"] for _, v in d["langs"]) or 1
     w, h = 495, 232
     cx, cy = 128, 124
-    inner = [f'<text class="ttl" x="26" y="36">SISTEMA DE LINGUAGENS</text>']
+    inner = [f'<text class="ttl" x="26" y="36">LANGUAGE SYSTEM</text>']
     inner.append(f'<circle cx="{cx}" cy="{cy}" r="34" fill="url(#sungalaxy)"><animate attributeName="r" values="30;36;30" dur="4s" repeatCount="indefinite"/></circle>'
                  f'<circle cx="{cx}" cy="{cy}" r="11" fill="#fff7b0"/>')
     biggest = max((v["size"] for _, v in langs), default=1)
@@ -217,7 +217,7 @@ def card_galaxy(d):
             f'<rect x="290" y="{y + 6}" width="{w - 316}" height="2.5" rx="1.2" fill="#1b2745"/>'
             f'<rect x="290" y="{y + 6}" width="0" height="2.5" rx="1.2" fill="{v["color"]}"><animate attributeName="width" from="0" to="{(w - 316) * share:.1f}" dur="2s" fill="freeze"/></rect>'
         )
-    (OUT / "galaxy.svg").write_text(frame(w, h, "Sistema solar de linguagens mais usadas", "\n".join(inner), "galaxy"), encoding="utf-8")
+    (OUT / "galaxy.svg").write_text(frame(w, h, "Solar system of most used languages", "\n".join(inner), "galaxy"), encoding="utf-8")
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ Uso: python scripts/gen_static.py   (escreve em assets/)
 SVG com SMIL/CSS roda dentro de <img> no GitHub, sem JavaScript.
 """
 import random
+import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -11,7 +12,7 @@ OUT = Path(__file__).resolve().parent.parent / "assets"
 OUT.mkdir(exist_ok=True)
 
 W, H = 900, 520
-TOTAL = 62.0  # duracao do loop em segundos
+TOTAL = 132.0  # duracao do loop em segundos
 YELLOW = "#FFE81F"
 BLUE = "#4BD5EE"
 FONT = "'Franklin Gothic Demi Cond','Franklin Gothic Medium','Arial Narrow','Helvetica Neue',Arial,sans-serif"
@@ -71,6 +72,45 @@ def outline(name, text, size, spacing=0.0, max_w=None):
     return pen.getCommands()
 
 
+GLYPH_DEFS = {}
+
+
+def _register(name, g):
+    gs = _font(name)[0]
+    gid = "g" + re.sub(r"\W", "", name.split(".")[0][:3]) + re.sub(r"\W", "", g)
+    if gid not in GLYPH_DEFS:
+        pen = SVGPathPen(gs, ntos=lambda v: f"{v:.0f}")
+        gs[g].draw(pen)
+        GLYPH_DEFS[gid] = pen.getCommands()
+    return gid, bool(GLYPH_DEFS[gid])
+
+
+def outline_uses(name, text, size, spacing=0.0, max_w=None):
+    """Como outline(), mas reutiliza cada glifo via <use> (arquivo bem menor)."""
+    gs, cm, upm, hmtx = _font(name)
+    if max_w:
+        size = min(size, size * max_w / text_width(name, text, size, spacing))
+    sc = size / upm
+    x = -text_width(name, text, size, spacing) / 2
+    parts = []
+    for c in text:
+        g = _glyph(cm, c)
+        gid, ink = _register(name, g)
+        if ink:
+            parts.append(f'<use href="#{gid}" transform="translate({x:.1f} 0) scale({sc:.4f} {-sc:.4f})"/>')
+        if c == "Ç":
+            comma, k = cm[ord(",")], 0.62
+            cid, _ = _register(name, comma)
+            cx = x + (hmtx[g][0] - hmtx[comma][0] * k) * sc / 2
+            parts.append(f'<use href="#{cid}" transform="translate({cx:.1f} {CEDILLA_DY * sc:.1f}) scale({sc * k:.4f} {-sc * k:.4f})"/>')
+        x += hmtx[g][0] * sc + spacing
+    return "".join(parts)
+
+
+def glyph_defs():
+    return "".join(f'<path id="{i}" d="{d}"/>' for i, d in GLYPH_DEFS.items())
+
+
 def fmt(v):
     return f"{v:.3f}".rstrip("0").rstrip(".")
 
@@ -105,35 +145,69 @@ def starfield(rng, n=150):
 
 
 CRAWL = [
-    ("EPISÓDIO VII", "head"),
-    ("O ARQUITETO DESPERTA", "title"),
+    ("EPISODE IX", "head"),
+    ("THE LEGACY STRIKES BACK", "title"),
     ("", ""),
-    ("Eram tempos sombrios para o", ""),
-    ("software. Monólitos de código", ""),
-    ("legado cobriam a galáxia, e os", ""),
-    ("deploys aconteciam às sextas...", ""),
+    ("The galaxy of software is in", ""),
+    ("turmoil. Empires of legacy code", ""),
+    ("stretch across every system, and", ""),
+    ("nobody remembers who built them,", ""),
+    ("or why.", ""),
     ("", ""),
-    ("Das sombras do CIn-UFPE, em", ""),
-    ("Recife, surge VINÍCIUS FRANÇA,", ""),
-    ("estudante de Sistemas de", ""),
-    ("Informação e desenvolvedor", ""),
-    ("Backend e Full Stack.", ""),
+    ("Deep in the Outer Rim, a lone", ""),
+    ("engineer receives a message: a", ""),
+    ("payment service is failing, the", ""),
+    ("pager is screaming, and it is, of", ""),
+    ("course, a Friday afternoon.", ""),
     ("", ""),
-    ("Armado de Java, Spring, Go e", ""),
-    ("Clean Architecture, ele forja", ""),
-    ("sistemas escaláveis, testados", ""),
-    ("e prontos para o combate.", ""),
+    ("The Old Monolith looms over the", ""),
+    ("repository like a Death Star.", ""),
+    ("Every change risks a chain", ""),
+    ("reaction. Its tests are few. Its", ""),
+    ("documentation is a rumor passed", ""),
+    ("between weary veterans.", ""),
     ("", ""),
-    ("SUA MISSÃO: construir", "head"),
-    ("plataformas de FinTech que", ""),
-    ("unam dados, finanças e", ""),
-    ("inteligência em toda a galáxia.", ""),
+    ("Yet hope survives. Rebel", ""),
+    ("developers gather in the quiet", ""),
+    ("hours, armed with unit tests,", ""),
+    ("clean architecture, and a", ""),
+    ("stubborn faith in refactoring.", ""),
     ("", ""),
-    ("Entre o Lado Luminoso do código", ""),
-    ("limpo e o Lado Sombrio das", ""),
-    ("gambiarras, ele escolheu o seu", ""),
-    ("caminho. Que a Força (e os", ""),
-    ("testes verdes) estejam com você...", "end"),
+    ("Their missions are never glorious.", ""),
+    ("They hunt a bug that vanishes", ""),
+    ("when observed. They bargain with", ""),
+    ("a flaky test that fails only at", ""),
+    ("midnight. They untangle a", ""),
+    ("dependency older than the", ""),
+    ("project itself.", ""),
+    ("", ""),
+    ("Some are tempted by the Dark", ""),
+    ("Side: the quick hack, the copied", ""),
+    ("snippet, the temporary fix that", ""),
+    ("lives forever. It is faster. It", ""),
+    ("is easier. And it always sends", ""),
+    ("the bill later.", ""),
+    ("", ""),
+    ("But a Jedi engineer knows the", ""),
+    ("way. Read before writing.", ""),
+    ("Measure before optimizing. Test", ""),
+    ("before shipping. Leave the code", ""),
+    ("better than you found it.", ""),
+    ("", ""),
+    ("Across the galaxy, pipelines turn", ""),
+    ("green, services scale, and a few", ""),
+    ("brave builders ship what others", ""),
+    ("called impossible, one pull", ""),
+    ("request at a time.", ""),
+    ("", ""),
+    ("Now a new mission begins: build", ""),
+    ("systems that survive contact with", ""),
+    ("reality, teach others what was", ""),
+    ("learned, and keep the lights of", ""),
+    ("the galaxy running...", ""),
+    ("", ""),
+    ("MAY THE FORCE BE WITH YOU,", "end"),
+    ("AND MAY YOUR BUILD STAY GREEN", "end"),
 ]
 
 # --- parametros da perspectiva ---
@@ -142,9 +216,9 @@ BOTTOM = 540.0          # y logo abaixo da borda inferior
 Z0 = 1.0                # profundidade de uma linha na borda inferior
 K = (BOTTOM - HORIZON) * Z0
 GAP = 0.075             # espacamento entre linhas em profundidade
-SPEED = 0.15           # profundidade por segundo
-T_START, T_CRAWL = 14.0, 47.0
-SAMPLES = 110
+SPEED = 0.068          # profundidade por segundo
+T_START, T_CRAWL = 14.0, 112.0
+SAMPLES = 120
 
 
 def crawl_lines():
@@ -160,31 +234,31 @@ def crawl_lines():
             z = max(z, 0.45)
             y = HORIZON + K / z
             s = Z0 / z
-            fade = max(0.0, min(1.0, (s - 0.17) / 0.14))
+            fade = max(0.0, min(1.0, (s - 0.17) / 0.14)) * min(1.0, (T_CRAWL - t) / 5.0)
             ys.append(y)
             ss.append(s)
             ops.append(fade)
         f0 = T_START / TOTAL
         f1 = (T_START + T_CRAWL) / TOTAL
         kt = [0.0] + [f0 + (f1 - f0) * k / SAMPLES for k in range(SAMPLES + 1)] + [1.0]
-        ktxt = ";".join(fmt(v) for v in kt)
+        ktxt = ";".join(f"{v:.4f}".rstrip("0").rstrip(".") for v in kt)
         tv = [ys[0]] + ys + [ys[-1]]
         sv = [ss[0]] + ss + [ss[-1]]
         ov = [0.0] + ops + [0.0]
         size = {"head": 40, "title": 48, "end": 40}.get(kind, 40)
         if kind in ("head", "title"):
-            d = outline(JEDI, text, 40 if kind == "head" else 44, 2, max_w=640)
+            d = outline_uses(JEDI, text, 40 if kind == "head" else 44, 2, max_w=640)
         else:
-            d = outline(GOTHIC, text, 42, 1.2, max_w=640)
-        trans = ";".join(f"450 {fmt(y)}" for y in tv)
-        scale = ";".join(f"{fmt(s)} {fmt(s * 0.78)}" for s in sv)
-        opac = ";".join(fmt(o) for o in ov)
+            d = outline_uses(GOTHIC, text, 42, 1.2, max_w=640)
+        trans = ";".join(f"450 {y:.1f}" for y in tv)
+        scale = ";".join(f"{s:.3f} {s * 0.78:.3f}" for s in sv)
+        opac = ";".join(f"{o:.2f}".rstrip("0").rstrip(".") or "0" for o in ov)
         out.append(
-            f'<path d="{d}" fill="{YELLOW}" opacity="0">'
+            f'<g fill="{YELLOW}" opacity="0">'
             f'<animateTransform attributeName="transform" type="translate" values="{trans}" keyTimes="{ktxt}" dur="{TOTAL}s" repeatCount="indefinite"/>'
             f'<animateTransform attributeName="transform" type="scale" values="{scale}" keyTimes="{ktxt}" dur="{TOTAL}s" repeatCount="indefinite" additive="sum"/>'
             f'<animate attributeName="opacity" values="{opac}" keyTimes="{ktxt}" dur="{TOTAL}s" repeatCount="indefinite"/>'
-            f"</path>"
+            f"{d}</g>"
         )
     return "\n".join(out)
 
@@ -227,16 +301,18 @@ def intro():
     return (
         f'<g opacity="0" fill="{BLUE}">'
         f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{ktxt}" dur="{TOTAL}s" repeatCount="indefinite"/>'
-        f'<path transform="translate(450 245)" d="{outline(GOTHIC, "Há muito tempo, numa galáxia", 34, 1)}"/>'
-        f'<path transform="translate(450 290)" d="{outline(GOTHIC, "muito, muito distante....", 34, 1)}"/></g>'
+        f'<path transform="translate(450 245)" d="{outline(GOTHIC, "A long time ago in a galaxy", 34, 1)}"/>'
+        f'<path transform="translate(450 290)" d="{outline(GOTHIC, "far, far away....", 34, 1)}"/></g>'
     )
 
 
 def build_crawl():
     rng = random.Random(77)
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Há muito tempo, numa galáxia muito, muito distante... Vinícius França, Software Developer.">
+    lines = crawl_lines()
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="A long time ago in a galaxy far, far away... Vinícius França, Software Developer.">
 <title>Vinícius França — Software Developer</title>
 <defs>
+{glyph_defs()}
 <linearGradient id="shoot" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>
 <linearGradient id="fadeTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset="0.75" stop-color="#000" stop-opacity="0.85"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
 <radialGradient id="nebula" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#1b2a6b" stop-opacity="0.55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
@@ -247,7 +323,7 @@ def build_crawl():
 {starfield(rng)}
 {intro()}
 {logo()}
-{crawl_lines()}
+{lines}
 <rect x="0" y="0" width="{W}" height="130" fill="url(#fadeTop)"/>
 </svg>
 """
@@ -255,7 +331,7 @@ def build_crawl():
 
 
 def build_divider():
-    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 44" width="900" height="44" role="img" aria-label="Duelo de sabres de luz">
+    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 44" width="900" height="44" role="img" aria-label="Lightsaber duel divider">
 <defs>
 <filter id="gb" x="-20%" y="-300%" width="140%" height="700%"><feGaussianBlur stdDeviation="4"/></filter>
 <linearGradient id="hilt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde6"/><stop offset="0.5" stop-color="#7d8594"/><stop offset="1" stop-color="#3b414d"/></linearGradient>
@@ -285,57 +361,8 @@ def build_divider():
     (OUT / "divider.svg").write_text(svg, encoding="utf-8")
 
 
-QUOTES = [
-    ("Faça, ou não faça. Tentativa não há.", "MESTRE YODA"),
-    ("Medo é o caminho para o Lado Sombrio.", "MESTRE YODA"),
-    ("Tenho um mau pressentimento sobre este deploy.", "TODO DEV, SEXTA 17h59"),
-    ("Que a Força (e os testes verdes) estejam com você.", "VFSVINI"),
-]
-
-
-def build_quotes():
-    per = 6.0
-    total = per * len(QUOTES)
-    items = []
-    for i, (q, who) in enumerate(QUOTES):
-        a = i * per / total
-        b = (i * per + 0.8) / total
-        c = (i * per + per - 0.9) / total
-        d = (i * per + per - 0.1) / total
-        kt = sorted({0.0, a, b, c, d, 1.0})
-        vals = []
-        for k in kt:
-            if k < a - 1e-9 or k > d + 1e-9:
-                vals.append("0")
-            elif abs(k - a) < 1e-9 and a > 0:
-                vals.append("0")
-            elif abs(k - d) < 1e-9 and d < 1:
-                vals.append("0")
-            elif a - 1e-9 <= k <= d + 1e-9 and (abs(k - b) < 1e-9 or abs(k - c) < 1e-9):
-                vals.append("1")
-            else:
-                vals.append("0")
-        items.append(
-            f'<g opacity="0"><animate attributeName="opacity" values="{";".join(vals)}" '
-            f'keyTimes="{";".join(fmt(k) for k in kt)}" dur="{total}s" repeatCount="indefinite"/>'
-            f'<text class="q" x="450" y="38" text-anchor="middle" font-size="22" font-style="italic">“{escape(q)}”</text>'
-            f'<text class="a" x="450" y="64" text-anchor="middle" font-size="12" letter-spacing="4">— {escape(who)}</text></g>'
-        )
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 80" width="900" height="80" role="img" aria-label="Citações da galáxia">
-<style>
-text{{font-family:{FONT}}}
-.q{{fill:#7d8fc9}} .a{{fill:#b8860b}}
-@media (prefers-color-scheme: dark){{.q{{fill:#aab8e8}} .a{{fill:#ffe81f}}}}
-</style>
-{"".join(items)}
-</svg>
-"""
-    (OUT / "quotes.svg").write_text(svg, encoding="utf-8")
-
-
 if __name__ == "__main__":
     build_crawl()
     build_divider()
-    build_quotes()
     for f in sorted(OUT.glob("*.svg")):
         print(f.name, f.stat().st_size // 1024, "KB")
