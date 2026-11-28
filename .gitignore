@@ -4,3 +4,5 @@ dist/
 dist-local/
 __pycache__/
 *.pyc
+.cinema_frames/
+cinema/*.bak

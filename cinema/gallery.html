@@ -1,0 +1,21 @@
+<!doctype html><meta charset=utf-8><body style="margin:0;background:#000;overflow:hidden">
+<canvas id=c width=900 height=344></canvas>
+<script type=module>
+import * as THREE from './three.module.min.js';
+import { buildCharacter, applyPose, DEF_POSE } from './chars.js';
+const W=900,H=344, q=new URLSearchParams(location.search);
+const r=new THREE.WebGLRenderer({canvas:document.getElementById('c'),antialias:true,preserveDrawingBuffer:true});
+r.shadowMap.enabled=true; r.shadowMap.type=THREE.PCFSoftShadowMap; r.setSize(W,H,false);
+r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=1.15;
+const s=new THREE.Scene(); s.background=new THREE.Color(0x070b18);
+const cam=new THREE.PerspectiveCamera(+(q.get('fov')||30),W/H,0.1,120);
+cam.position.set(+(q.get('cx')||0),+(q.get('cy')||1.4),+(q.get('cz')||8)); cam.lookAt(+(q.get('lx')||0),+(q.get('ly')||1.0),0);
+s.add(new THREE.HemisphereLight(0x7f9ed8,0x1a1020,1.2));
+const d=new THREE.DirectionalLight(0xcfdcff,2.6); d.position.set(-3,6,7); d.castShadow=true; d.shadow.mapSize.set(2048,2048);
+Object.assign(d.shadow.camera,{left:-8,right:8,top:6,bottom:-4}); s.add(d);
+const rim=new THREE.DirectionalLight(0xff6a5a,1.2); rim.position.set(5,4,-6); s.add(rim);
+const fl=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.MeshStandardMaterial({color:0x141c34,roughness:0.45,metalness:0.4})); fl.rotation.x=-Math.PI/2; fl.receiveShadow=true; s.add(fl);
+const ks=(q.get('k')||'obi,vader,yoda,emperor').split(','); const sp=+(q.get('sp')||2.4);
+ks.forEach((k,i)=>{const c=buildCharacter(k); c.position.x=(i-(ks.length-1)/2)*sp; s.add(c); applyPose(c,{...DEF_POSE},0.3);});
+r.render(s,cam); document.title='ok';
+</script>
