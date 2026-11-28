@@ -4,8 +4,10 @@ Este repositório é o README do perfil. Os detalhes abaixo ficam aqui, fora do 
 
 ## Projeto de fã
 Projeto de fã de Star Wars, sem vínculo com a Lucasfilm/Disney. Os personagens pertencem aos
-seus donos. As frases do carrossel são **originais**, escritas no estilo da saga, e não são falas
-dos filmes.
+seus donos. As frases do carrossel vêm do *Compêndio Galáctico Definitivo* (aforismos originais, escritos no
+estilo da saga, fornecidos pelo dono do perfil) e ficam em `scripts/quotes_pt.txt`. A seção de falas
+clássicas da dublagem brasileira não foi importada: são diálogos dos filmes, protegidos por direitos
+autorais.
 
 ## Créditos
 - Letras (convertidas em contorno vetorial): **SF Distant Galaxy** (ShyFonts, freeware, uso pessoal;

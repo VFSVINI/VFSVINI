@@ -42,12 +42,22 @@ def wrap(text, max_w, size=22, spacing=0.6):
     return lines
 
 
+def _fit(text):
+    """(linhas, tamanho) com a maior fonte (22 a 17) que cabe em 2 linhas; None se nao couber."""
+    quoted = "\u201c" + text + "\u201d"
+    for size in range(22, 16, -1):
+        lines = wrap(quoted, 800, size)
+        if len(lines) <= 2:
+            return lines, size
+    return None
+
+
 def build():
     now = datetime.now(timezone.utc)
     seed = int(hashlib.sha256(f"{now:%Y-%m-%d}-{now.hour // 12}".encode()).hexdigest(), 16)
     items = quotes()
     random.Random(seed).shuffle(items)
-    items = items[:SHOWN]
+    items = [it for it in items if _fit(it[0]) is not None][:SHOWN]
     total = PER * len(items)
     groups = []
     for i, (text, who) in enumerate(items):
@@ -60,10 +70,10 @@ def build():
                 k = kt[-1]
             kt.append(k)
             vals.append(v)
-        lines = wrap("\u201c" + text + "\u201d", 800)
+        lines, size = _fit(text)
         ys, ya = ([58], 98) if len(lines) == 1 else ([46, 74], 106)
         body = "".join(
-            f'<g transform="translate(450 {y})" fill="#B6C3EE">{outline_uses(GOTHIC, line, 22, 0.6)}</g>'
+            f'<g transform="translate(450 {y})" fill="#B6C3EE">{outline_uses(GOTHIC, line, size, 0.6)}</g>'
             for line, y in zip(lines, ys)
         )
         who_use = f'<g transform="translate(450 {ya})" fill="{YELLOW}">{outline_uses(JEDI, who, 12, 4)}</g>'
