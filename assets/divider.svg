@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 44" width="900" height="44" role="img" aria-label="Duelo de sabres de luz">
+<defs>
+<filter id="gb" x="-20%" y="-300%" width="140%" height="700%"><feGaussianBlur stdDeviation="4"/></filter>
+<linearGradient id="hilt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde6"/><stop offset="0.5" stop-color="#7d8594"/><stop offset="1" stop-color="#3b414d"/></linearGradient>
+<radialGradient id="spark"><stop offset="0" stop-color="#fff"/><stop offset="0.4" stop-color="#ffe81f"/><stop offset="1" stop-color="#ffe81f" stop-opacity="0"/></radialGradient>
+</defs>
+<g>
+<rect x="410" y="19" width="0" height="6" rx="3" fill="#4bd5ee" filter="url(#gb)" opacity="0.95">
+<animate attributeName="x" values="415;30;30;415" keyTimes="0;0.14;0.86;1" dur="7s" repeatCount="indefinite"/>
+<animate attributeName="width" values="0;385;385;0" keyTimes="0;0.14;0.86;1" dur="7s" repeatCount="indefinite"/></rect>
+<rect x="410" y="20.5" width="0" height="3" rx="1.5" fill="#7fe3ff">
+<animate attributeName="x" values="415;30;30;415" keyTimes="0;0.14;0.86;1" dur="7s" repeatCount="indefinite"/>
+<animate attributeName="width" values="0;385;385;0" keyTimes="0;0.14;0.86;1" dur="7s" repeatCount="indefinite"/></rect>
+<rect x="485" y="19" width="0" height="6" rx="3" fill="#ff2a2a" filter="url(#gb)" opacity="0.95">
+<animate attributeName="width" values="0;385;385;0" keyTimes="0;0.14;0.86;1" dur="7s" repeatCount="indefinite"/></rect>
+<rect x="485" y="20.5" width="0" height="3" rx="1.5" fill="#ff9a9a">
+<animate attributeName="width" values="0;385;385;0" keyTimes="0;0.14;0.86;1" dur="7s" repeatCount="indefinite"/></rect>
+</g>
+<g>
+<rect x="395" y="16" width="30" height="12" rx="2" fill="url(#hilt)"/><rect x="402" y="14" width="3" height="16" fill="#2a2f39"/><rect x="412" y="14" width="3" height="16" fill="#2a2f39"/>
+<rect x="475" y="16" width="30" height="12" rx="2" fill="url(#hilt)"/><rect x="485" y="14" width="3" height="16" fill="#2a2f39"/><rect x="495" y="14" width="3" height="16" fill="#2a2f39"/>
+</g>
+<circle cx="450" cy="22" r="14" fill="url(#spark)" opacity="0">
+<animate attributeName="opacity" values="0;0;1;0.2;0.9;0;0" keyTimes="0;0.13;0.16;0.2;0.25;0.3;1" dur="7s" repeatCount="indefinite"/>
+<animate attributeName="r" values="4;4;16;8;14;4;4" keyTimes="0;0.13;0.16;0.2;0.25;0.3;1" dur="7s" repeatCount="indefinite"/></circle>
+</svg>
