@@ -50,7 +50,7 @@
 </p>
 
 <p align="center">
-  <img alt="Escada de patentes do mais fraco ao mais poderoso: Grogu, Ahsoka Tano, Obi-Wan Kenobi, Darth Maul, Mace Windu, Darth Tyranus, Darth Vader, Darth Sidious e Yoda" src="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/ladder.svg" width="100%"/>
+  <img alt="Escada de patentes do mais fraco ao mais poderoso: Ahsoka Tano, Obi-Wan Kenobi, Darth Maul, Luke Skywalker, Darth Tyranus, Mace Windu, Darth Vader, Darth Sidious e Yoda" src="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/ladder.svg" width="100%"/>
 </p>
 
 <div align="center">

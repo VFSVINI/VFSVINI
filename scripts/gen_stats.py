@@ -92,15 +92,15 @@ def collect():
 # Escada de poder, do mais fraco ao mais poderoso, intercalando os dois lados da Forca.
 # (xp minimo, patente, personagem, lado)
 RANKS = [
-    (0, "YOUNGLING", "GROGU", "light"),
-    (250, "PADAWAN", "AHSOKA TANO", "light"),
+    (0, "PADAWAN", "AHSOKA TANO", "light"),
     (900, "JEDI KNIGHT", "OBI-WAN KENOBI", "light"),
     (1800, "SITH APPRENTICE", "DARTH MAUL", "dark"),
-    (3200, "COUNCIL MASTER", "MACE WINDU", "light"),
+    (3200, "JEDI MASTER", "LUKE SKYWALKER", "light"),
     (5500, "SITH COUNT", "DARTH TYRANUS", "dark"),
-    (9000, "SITH LORD", "DARTH VADER", "dark"),
-    (14000, "SITH EMPEROR", "DARTH SIDIOUS", "dark"),
-    (20000, "GRAND MASTER", "YODA", "light"),
+    (8000, "COUNCIL MASTER", "MACE WINDU", "light"),
+    (11000, "SITH LORD", "DARTH VADER", "dark"),
+    (15000, "SITH EMPEROR", "DARTH SIDIOUS", "dark"),
+    (22000, "GRAND MASTER", "YODA", "light"),
 ]
 
 
