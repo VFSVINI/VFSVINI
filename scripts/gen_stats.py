@@ -93,8 +93,8 @@ def collect():
 # (xp minimo, patente, personagem, lado)
 RANKS = [
     (0, "PADAWAN", "AHSOKA TANO", "light"),
-    (900, "JEDI KNIGHT", "OBI-WAN KENOBI", "light"),
-    (1800, "SITH APPRENTICE", "DARTH MAUL", "dark"),
+    (900, "SITH APPRENTICE", "DARTH MAUL", "dark"),
+    (1800, "JEDI KNIGHT", "OBI-WAN KENOBI", "light"),
     (3200, "JEDI MASTER", "LUKE SKYWALKER", "light"),
     (5500, "SITH COUNT", "DARTH TYRANUS", "dark"),
     (8000, "COUNCIL MASTER", "MACE WINDU", "light"),
