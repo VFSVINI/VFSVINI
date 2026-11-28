@@ -2,3 +2,5 @@
 fonts/SFDistantGalaxy.ttf
 dist/
 dist-local/
+__pycache__/
+*.pyc
