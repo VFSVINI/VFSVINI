@@ -92,7 +92,7 @@ def collect():
 # Escada de poder, do mais fraco ao mais poderoso, intercalando os dois lados da Forca.
 # (xp minimo, patente, personagem, lado)
 RANKS = [
-    (0, "PADAWAN", "AHSOKA TANO", "light"),
+    (0, "PADAWAN", "ANAKIN SKYWALKER", "light"),
     (900, "SITH APPRENTICE", "DARTH MAUL", "dark"),
     (1800, "JEDI KNIGHT", "OBI-WAN KENOBI", "light"),
     (3200, "JEDI MASTER", "LUKE SKYWALKER", "light"),
