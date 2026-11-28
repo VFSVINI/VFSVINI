@@ -102,9 +102,9 @@ def ladder(d):
     cur = gs.rank_of(xp)[0]
     n = len(gs.RANKS)
     w, h = 900, 176
-    step = (w - 80) / (n - 1)
+    step = (w - 124) / (n - 1)
     y0 = 78
-    xs = [40 + i * step for i in range(n)]
+    xs = [62 + i * step for i in range(n)]
     inner = [
         text_path(JEDI, T["ladder_title"], 15, 3, 26, 36, YELLOW),
         text_path(GOTHIC, T["ladder_sub"], 11, 3, w - 24, 36, "#6b7aa8", "end"),
