@@ -1,0 +1,55 @@
+<!doctype html><meta charset=utf-8>
+<body style="margin:0;background:#000;overflow:hidden">
+<canvas id=c width=900 height=344></canvas>
+<script type=module>
+import * as THREE from './three.module.min.js';
+import { createWorld, W, H } from './world.js';
+import { buildShow } from './choreo.js';
+
+const q = new URLSearchParams(location.search);
+const { renderer, scene, camera, key } = createWorld();
+let show;
+try {
+  show = buildShow(scene);
+  show.dir.camera = camera;
+} catch (e) {
+  document.body.insertAdjacentHTML('beforeend', '<pre style="position:fixed;top:0;left:0;color:#f66;font:12px monospace;white-space:pre-wrap;max-width:880px">ERRO: ' + e.message + String.fromCharCode(10) + (e.stack || '').split(String.fromCharCode(10)).slice(0, 4).join(String.fromCharCode(10)) + '</pre>');
+  throw e;
+}
+
+// mapa de tempo (camera lenta): [t_inicio, t_fim, fator]  (fator < 1 = camera lenta)
+function renderAt(t) {
+  show.fighters.forEach((f) => f.update(t));
+  show.trails.update(t);
+  const flash = show.fx.update(t, camera);
+  show.dir.apply(t, Math.min(1, flash * 0.5));
+  renderer.toneMappingExposure = 1.15 + flash * 0.35;
+  renderer.render(scene, camera);
+  return flash;
+}
+window.renderAt = renderAt;
+
+if (q.has('t')) {
+  renderAt(parseFloat(q.get('t')));
+  document.title = 'done';
+} else if (q.has('batch')) {
+  const fps = parseInt(q.get('fps') || '15');
+  const t0 = parseFloat(q.get('t0') || '0');
+  const t1 = parseFloat(q.get('t1') || String(show.duration));
+  const n = Math.round((t1 - t0) * fps);
+  const host = q.get('host') || 'http://localhost:8766';
+  (async () => {
+    for (let i = 0; i < n; i++) {
+      const t = t0 + i / fps;
+      renderAt(t);
+      const blob = await new Promise((res) => renderer.domElement.toBlob(res, 'image/jpeg', 0.93));
+      await fetch(`${host}/frame/${i}`, { method: 'POST', body: blob });
+    }
+    await fetch(`${host}/done`, { method: 'POST', body: String(n) });
+    document.title = 'done';
+  })();
+} else {
+  renderAt(0);
+  document.title = 'done';
+}
+</script>

@@ -8,7 +8,7 @@ from texts import T
 W = 900
 YELLOW, CYAN = "#FFE81F", "#4BD5EE"
 
-HEADINGS = [(slug, T[f"h_{slug}"]) for slug in ("transmission", "duel", "arsenal", "dossier", "missions", "snake")]
+HEADINGS = [(slug, T[f"h_{slug}"]) for slug in ("transmission", "duel", "film", "arsenal", "dossier", "missions", "snake")]
 
 DEFS = f"""<defs>
 <linearGradient id="hb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#05070f"/><stop offset="1" stop-color="#0d1530"/></linearGradient>

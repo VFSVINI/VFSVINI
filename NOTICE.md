@@ -24,3 +24,15 @@ Darth Sidious e, no topo, Yoda. Os cortes de XP estão em `RANKS`.
 - Dinâmico (ficha, escada, linguagens, selos, missões, frases e cobrinha): workflow
   `.github/workflows/snake.yml`, a cada 12 horas, publicado na branch `output`.
 - Idioma: `scripts/texts.py` tem `pt` e `en`; troque `DEFAULT_LANG` (e `PROFILE_LANG` no workflow).
+
+## Filme 3D
+`assets/duelo3d.webp` (2 minutos, 12 quadros por segundo, ~11 MB) é renderizado quadro a quadro: o
+Three.js (MIT, `cinema/three.module.min.js`) desenha cada quadro num Chrome headless, o Python aplica brilho,
+vinheta e fades e monta o WebP. Os personagens são modelos 3D estilizados, feitos por código em
+`cinema/chars.js`; a coreografia e a câmera ficam em `cinema/choreo.js`. O README mostra só o pôster leve
+(`assets/duelo3d-poster.jpg`), que abre o filme ao clicar.
+
+Para renderizar de novo (leva ~28 min + ~3 min de montagem; precisa de Chrome e Pillow):
+`python cinema/render_cinema.py --fps 12 --t0 0 --t1 120 --out assets/duelo3d.webp` e depois
+`python cinema/make_poster.py`.
+
