@@ -36,10 +36,10 @@ def build():
 
 {DIV}
 
-{heading("cast")}
+{heading("duel")}
 
 <p align="center">
-  <img src="assets/elenco.svg" alt="{T["alt_cast"]}" width="100%"/>
+  <img src="assets/duelo.svg" alt="{T["alt_duel"]}" width="100%"/>
 </p>
 
 {DIV}
@@ -61,10 +61,6 @@ def build():
 
 <p align="center">
   <img alt="{T["alt_ladder"]}" src="{RAW}/ladder.svg" width="100%"/>
-</p>
-
-<p align="center">
-  <img src="assets/xpnote.svg" alt="{T["alt_xp"]}" width="100%"/>
 </p>
 
 {DIV}

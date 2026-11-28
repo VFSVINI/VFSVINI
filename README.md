@@ -22,10 +22,10 @@
 <img src="assets/divider.svg" alt="" width="100%"/>
 </div>
 
-<h2 align="center"><img src="assets/h-cast.svg" alt="O Elenco Da Galáxia" width="100%"/></h2>
+<h2 align="center"><img src="assets/h-duel.svg" alt="Os Duelos Da Força" width="100%"/></h2>
 
 <p align="center">
-  <img src="assets/elenco.svg" alt="R2-D2, C-3PO, Darth Vader, Han Solo e Chewbacca" width="100%"/>
+  <img src="assets/duelo.svg" alt="Dois duelos de sabres ao mesmo tempo: Obi-Wan Kenobi contra Darth Vader e Mestre Yoda contra o Imperador Palpatine" width="100%"/>
 </p>
 
 <div align="center">
@@ -51,10 +51,6 @@
 
 <p align="center">
   <img alt="Escada de patentes do mais fraco ao mais poderoso: Grogu, Ahsoka Tano, Obi-Wan Kenobi, Darth Maul, Luke Skywalker, Mace Windu, Darth Vader, Yoda e Darth Sidious" src="https://raw.githubusercontent.com/VFSVINI/VFSVINI/output/ladder.svg" width="100%"/>
-</p>
-
-<p align="center">
-  <img src="assets/xpnote.svg" alt="Fórmula do XP: commits mais 5 pull requests mais 3 issues mais 2 revisões mais 10 estrelas mais 2 repositórios. Atualizado a cada 12 horas." width="100%"/>
 </p>
 
 <div align="center">
