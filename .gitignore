@@ -1,2 +1,4 @@
-fonts/
+# fonte freeware de uso pessoal: nunca versionar (o CI baixa a cada execucao)
+fonts/SFDistantGalaxy.ttf
 dist/
+dist-local/
