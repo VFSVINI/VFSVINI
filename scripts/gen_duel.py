@@ -234,42 +234,68 @@ def emperor(clash1, clash2, rng):
     return svg
 
 
-def jedi(cx, mirror, cloak, tunic, belt, hair, beard, saber_color, core, name_color):
-    """Obi-Wan / Luke de guarda: respiracao e brilho do sabre."""
-    sx = -1 if mirror else 1
-    beard_svg = (
-        f'<path d="M-15 -164Q-17 -146 0 -142Q17 -146 15 -164Q8 -154 0 -154Q-8 -154 -15 -164Z" fill="{beard}"/>' if beard else ""
-    )
-    return f"""<g transform="translate({cx} {GROUND}) scale({sx} 1)">
-<ellipse cx="0" cy="2" rx="36" ry="5" fill="#000" opacity="0.55"/>
-<g>{a_translate([(0, 0, 0), (1.5, 0, -1.6), (3.0, 0, 0), (4.5, 0, -1.6), (6.0, 0, 0), (7.0, 0, 0)])}
-<path d="M-28 -150L-46 -4L46 -4L28 -150Z" fill="{cloak}"/>
+def _interp(frames, t):
+    """Valor (x, y) interpolado linearmente de frames [(t, x, y), ...] no instante t."""
+    f = _norm(frames)
+    for (t0, x0, y0), (t1, x1, y1) in zip(f, f[1:]):
+        if t0 <= t <= t1:
+            k = 0 if t1 == t0 else (t - t0) / (t1 - t0)
+            return x0 + (x1 - x0) * k, y0 + (y1 - y0) * k
+    return f[-1][1], f[-1][2]
+
+
+def _unwrap(angles):
+    """Mantem a sequencia de angulos continua (evita giros de 360 graus na interpolacao)."""
+    out = [angles[0]]
+    for a in angles[1:]:
+        while a - out[-1] > 180:
+            a -= 360
+        while a - out[-1] < -180:
+            a += 360
+        out.append(a)
+    return out
+
+
+def _reach(base, off, scale, pivot):
+    return base[0] + off[0] + scale * pivot[0], base[1] + off[1] + scale * pivot[1]
+
+
+def obi_wan(base, off_frames, arm_frames):
+    """Obi-Wan de frente para a direita; arm_frames em angulos de rotacao locais."""
+    pivot = (24, -142)
+    arm = [(t, a) for t, a in arm_frames]
+    return f"""<g transform="translate({base[0]} {base[1]})">
+<ellipse cx="0" cy="2" rx="38" ry="5" fill="#000" opacity="0.55"/>
+<g>{a_translate(off_frames)}
+<path d="M-28 -150L-46 -4L46 -4L28 -150Z" fill="#5d4527"/>
 <rect x="-17" y="-60" width="14" height="56" rx="4" fill="#2a1e12"/><rect x="3" y="-60" width="14" height="56" rx="4" fill="#2a1e12"/>
 <rect x="-19" y="-14" width="17" height="12" rx="4" fill="#15100a"/><rect x="2" y="-14" width="17" height="12" rx="4" fill="#15100a"/>
-<rect x="-24" y="-150" width="48" height="94" rx="12" fill="{tunic}"/>
-<rect x="-24" y="-92" width="48" height="9" fill="{belt}"/><rect x="-6" y="-92" width="12" height="9" rx="2" fill="#c9a24a"/>
-<rect x="-34" y="-146" width="12" height="52" rx="6" fill="{tunic}"/><circle cx="-28" cy="-92" r="6" fill="#efc9a0"/>
-<rect x="22" y="-146" width="12" height="50" rx="6" fill="{tunic}"/><circle cx="28" cy="-94" r="6" fill="#efc9a0"/>
-<rect x="24" y="-110" width="8" height="26" rx="2" fill="#9aa3b2"/><rect x="24" y="-100" width="8" height="3" fill="#4a5160"/><rect x="24" y="-93" width="8" height="3" fill="#4a5160"/>
-{blade(28, -110, 5.5, 84, saber_color, core, horizontal=False)}
+<rect x="-24" y="-150" width="48" height="94" rx="12" fill="#c9ab78"/>
+<rect x="-24" y="-92" width="48" height="9" fill="#4a3320"/><rect x="-6" y="-92" width="12" height="9" rx="2" fill="#c9a24a"/>
+<rect x="-34" y="-146" width="12" height="52" rx="6" fill="#c9ab78"/><circle cx="-28" cy="-92" r="6" fill="#efc9a0"/>
 <circle cx="0" cy="-168" r="17" fill="#efc9a0"/>
-{beard_svg}
-<path d="M-18 -170Q-18 -190 0 -190Q18 -190 18 -170Q10 -178 0 -177Q-10 -178 -18 -170Z" fill="{hair}"/>
+<path d="M-15 -164Q-17 -146 0 -142Q17 -146 15 -164Q8 -154 0 -154Q-8 -154 -15 -164Z" fill="#b9824a"/>
+<path d="M-18 -170Q-18 -190 0 -190Q18 -190 18 -170Q10 -178 0 -177Q-10 -178 -18 -170Z" fill="#8a5a2b"/>
 <circle cx="-6" cy="-168" r="1.8" fill="#2a1a0a"/><circle cx="6" cy="-168" r="1.8" fill="#2a1a0a"/>
 <path d="M-4 -162Q0 -160 4 -162" stroke="#a5683e" fill="none" stroke-width="1.3" stroke-linecap="round"/>
+<g>{a_rotate(arm, pivot[0], pivot[1])}
+<rect x="24" y="-147" width="28" height="10" rx="5" fill="#c9ab78"/>
+<circle cx="54" cy="-142" r="6" fill="#efc9a0"/>
+<rect x="52" y="-145" width="16" height="6" rx="1.5" fill="#9aa3b2"/><rect x="58" y="-145" width="2" height="6" fill="#4a5160"/>
+{blade(68, -142, 5.5, 88, "#5ab8ff", "#e6f4ff")}
+</g>
 </g></g>"""
 
 
-def vader(cx):
-    """Darth Vader de guarda-costas do Imperador: de frente para a esquerda, sabre aceso ao lado."""
-    return f"""<g transform="translate({cx} {GROUND}) scale(-0.9 0.9)">
+def vader_fighter(base, off_frames, arm_frames, sc=0.9):
+    """Vader de frente para a esquerda; arm_frames em angulos de rotacao locais (direcao do braco = 180)."""
+    pivot = (-44, -136)
+    return f"""<g transform="translate({base[0]} {base[1]})">
 <ellipse cx="0" cy="2" rx="56" ry="6" fill="#000" opacity="0.6"/>
-<rect x="34.5" y="-212" width="25" height="146" rx="12" fill="#ff2a2a" filter="url(#bl)" opacity="0.9"><animate attributeName="opacity" values="0.9;0.55;0.95;0.7;0.9" dur="0.9s" repeatCount="indefinite"/></rect>
+<g>{a_translate(off_frames)}
+<g transform="scale({sc} {sc})">
 <path d="M-40 -144L-66 0L66 0L40 -144Z" fill="#0a0a10"><animate attributeName="d" values="M-40 -144L-66 0L66 0L40 -144Z;M-40 -144L-62 0L70 0L40 -144Z;M-40 -144L-66 0L66 0L40 -144Z" dur="3.8s" repeatCount="indefinite"/></path>
 <rect x="-20" y="-40" width="17" height="40" rx="5" fill="#101018"/><rect x="3" y="-40" width="17" height="40" rx="5" fill="#101018"/>
-<g>{a_translate([(0, 0, 0), (1.5, 0, -1.8), (3.0, 0, 0), (4.5, 0, -1.8), (6.0, 0, 0), (7.0, 0, 0)])}
-<rect x="43.5" y="-212" width="7" height="140" rx="3.5" fill="#ffe3e3" stroke="#ff2a2a" stroke-width="1.5"/>
-<rect x="42" y="-86" width="10" height="30" rx="2" fill="#9aa3b2"/><rect x="42" y="-76" width="10" height="3" fill="#4a5160"/><rect x="42" y="-68" width="10" height="3" fill="#4a5160"/>
 <rect x="-36" y="-146" width="72" height="76" rx="12" fill="#15151c"/>
 <rect x="-17" y="-126" width="34" height="26" rx="3" fill="#262633" stroke="#3a3a4a"/>
 <circle cx="-9" cy="-118" r="3" fill="#ff3b3b"><animate attributeName="opacity" values="1;0.2;1" dur="1.1s" repeatCount="indefinite"/></circle>
@@ -277,7 +303,7 @@ def vader(cx):
 <circle cx="9" cy="-118" r="3" fill="#4cff4c"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
 <rect x="-12" y="-110" width="24" height="4" rx="1" fill="#5a5a6e"/>
 <rect x="-36" y="-76" width="72" height="10" fill="#2a2a35"/><rect x="-7" y="-75" width="14" height="8" rx="2" fill="#aeb6c4"/>
-<rect x="-56" y="-140" width="16" height="66" rx="8" fill="#101018"/><rect x="39" y="-140" width="16" height="62" rx="8" fill="#101018"/>
+<rect x="39" y="-140" width="16" height="62" rx="8" fill="#101018"/>
 <path d="M-27 -162C-33 -204 -15 -220 0 -220C15 -220 33 -204 27 -162L17 -148L-17 -148Z" fill="#0d0d13"/>
 <path d="M-23 -168L-36 -144L36 -144L23 -168Z" fill="#12121a"/>
 <ellipse cx="-8" cy="-206" rx="9" ry="14" fill="#fff" opacity="0.07"/>
@@ -287,7 +313,51 @@ def vader(cx):
 <rect x="-10" y="-164" width="20" height="12" rx="2" fill="#2c2c38"/>
 <path d="M-6 -163V-153M-2 -163V-153M2 -163V-153M6 -163V-153" stroke="#555566" stroke-width="1.2"/>
 <path d="M-20 -154L-24 -146M20 -154L24 -146" stroke="#333342" stroke-width="2"/>
-</g></g>"""
+<g>{a_rotate(arm_frames, pivot[0], pivot[1])}
+<rect x="-74" y="-141" width="30" height="10" rx="5" fill="#101018" stroke="#1c1c28"/>
+<circle cx="-76" cy="-136" r="5.5" fill="#0c0c12" stroke="#1c1c28"/>
+<rect x="-94" y="-139" width="16" height="6" rx="1.5" fill="#9aa3b2"/><rect x="-88" y="-139" width="2" height="6" fill="#4a5160"/>
+{blade(-94, -136, 5.5, 100, "#ff2a2a", "#ffe3e3", direction=-1)}
+</g>
+</g></g></g>"""
+
+
+def fight_a():
+    """Obi-Wan x Vader: tres choques no chao e um no ar, fora de sincronia com o duelo do Yoda."""
+    ob, vb = (130, GROUND), (330, GROUND)
+    v_sc = 0.9
+    o_pivot, v_pivot = (24, -142), (-44, -136)
+    o_off = [
+        (0, 0, 0), (0.6, 0, 0), (0.9, 25, 0), (1.3, 10, 0), (2.2, 10, 0), (2.4, 10, 0), (2.9, 0, 0),
+        (3.6, 15, 0), (3.9, 15, 0), (4.4, 0, 0), (5.0, 0, 0), (5.2, 20, -35), (5.35, 35, -60), (5.6, 25, -40),
+        (6.0, 5, 0),
+    ]
+    v_off = [
+        (0, 0, 0), (0.9, 0, 0), (1.0, 6, 0), (1.5, 0, 0), (1.9, -30, 0), (2.4, -30, 0), (2.6, -24, 0),
+        (3.4, -25, 0), (3.9, -25, 0), (4.2, -10, 0), (5.3, -20, 0), (5.6, -8, 0), (6.4, 0, 0),
+    ]
+    clashes = [(0.9, (230, 165)), (2.4, (215, 120)), (3.9, (225, 215)), (5.35, (235, 140))]
+    o_phi, v_phi = {}, {}
+    for t, c in clashes:
+        op = _reach(ob, _interp(o_off, t), 1.0, o_pivot)
+        vp = _reach(vb, _interp(v_off, t), v_sc, v_pivot)
+        do, dv = math.dist(op, c), math.dist(vp, c)
+        assert 44 <= do <= 132, f"Obi fora de alcance no choque {t}: {do:.0f}"
+        assert 45 <= dv <= 135, f"Vader fora de alcance no choque {t}: {dv:.0f}"
+        o_phi[t] = math.degrees(math.atan2(c[1] - op[1], c[0] - op[0]))
+        v_phi[t] = math.degrees(math.atan2(c[1] - vp[1], c[0] - vp[0]))
+        if v_phi[t] < 0:
+            v_phi[t] += 360  # Vader aponta para a esquerda: angulos em torno de 180
+    o_world = [(0, -40), (0.5, -85), (0.9, o_phi[0.9]), (1.2, -40), (2.0, -75), (2.4, o_phi[2.4]), (2.8, -30),
+               (3.4, 10), (3.9, o_phi[3.9]), (4.3, -45), (5.0, -60), (5.35, o_phi[5.35]), (5.7, -30), (6.3, -40)]
+    v_world = [(0, 215), (0.6, 240), (0.9, v_phi[0.9]), (1.3, 215), (1.8, 245), (2.4, v_phi[2.4]), (2.8, 215),
+               (3.4, 150), (3.9, v_phi[3.9]), (4.3, 215), (5.0, 240), (5.35, v_phi[5.35]), (5.7, 215), (6.3, 215)]
+    o_rot = list(zip([t for t, _ in o_world], _unwrap([a for _, a in o_world])))
+    v_rot = list(zip([t for t, _ in v_world], _unwrap([a - 180 for _, a in v_world])))
+    parts = [obi_wan(ob, o_off, o_rot), vader_fighter(vb, v_off, v_rot, v_sc)]
+    for i, (t, c) in enumerate(clashes):
+        parts.append(spark(c[0], c[1], t, 1.2 if i == 3 else 1.0))
+    return "\n".join(parts)
 
 
 def label(cx, text, color):
@@ -304,7 +374,7 @@ def build():
 <filter id="bl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.5"/></filter>
 <radialGradient id="spark"><stop offset="0" stop-color="#fff"/><stop offset="0.4" stop-color="#ffe81f"/><stop offset="1" stop-color="#ffe81f" stop-opacity="0"/></radialGradient>
 <linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#03050c"/><stop offset="1" stop-color="#101a3a"/></linearGradient>
-<linearGradient id="floorD" x1="0" x2="1"><stop offset="0" stop-color="#4bd5ee" stop-opacity="0"/><stop offset="0.35" stop-color="#4bd5ee" stop-opacity="0.7"/><stop offset="0.65" stop-color="#ff2a2a" stop-opacity="0.7"/><stop offset="1" stop-color="#ff2a2a" stop-opacity="0"/></linearGradient>
+<linearGradient id="floorD" x1="0" x2="1"><stop offset="0" stop-color="#4bd5ee" stop-opacity="0"/><stop offset="0.5" stop-color="#ffe81f" stop-opacity="0.45"/><stop offset="1" stop-color="#ff2a2a" stop-opacity="0"/></linearGradient>
 <linearGradient id="shoot" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>
 <radialGradient id="glowL"><stop offset="0" stop-color="#4bd5ee" stop-opacity="0.22"/><stop offset="1" stop-color="#4bd5ee" stop-opacity="0"/></radialGradient>
 <radialGradient id="glowR"><stop offset="0" stop-color="#ff2a2a" stop-opacity="0.22"/><stop offset="1" stop-color="#ff2a2a" stop-opacity="0"/></radialGradient>
@@ -312,21 +382,22 @@ def build():
 </defs>
 <g clip-path="url(#cpD)">
 <rect width="{W}" height="{H}" fill="url(#bgD)"/>
-<ellipse cx="300" cy="260" rx="260" ry="90" fill="url(#glowL)"/><ellipse cx="620" cy="260" rx="260" ry="90" fill="url(#glowR)"/>
+<ellipse cx="150" cy="262" rx="150" ry="85" fill="url(#glowL)"/><ellipse cx="320" cy="262" rx="150" ry="85" fill="url(#glowR)"/>
+<ellipse cx="590" cy="262" rx="150" ry="85" fill="url(#glowL)"/><ellipse cx="760" cy="262" rx="150" ry="85" fill="url(#glowR)"/>
 {starfield(rng, 90)}
 <rect x="0" y="{GROUND + 1}" width="{W}" height="2" fill="url(#floorD)"/>
-<g transform="translate(-32 0)">
-{jedi(245, False, "#5d4527", "#c9ab78", "#4a3320", "#8a5a2b", "#b9824a", "#5ab8ff", "#e6f4ff", "#4bd5ee")}
-{vader(705)}
+<line x1="450" y1="70" x2="450" y2="{GROUND}" stroke="#2a3a6b" stroke-opacity="0.45" stroke-dasharray="3 7"/>
+{fight_a()}
+{label(130, names["obi"], "#4BD5EE")}
+{label(330, names["vader"], "#FF6B6B")}
+<g transform="translate(190 0)">
 {yoda(clash1, clash2)}
 {emperor(clash1, clash2, rng)}
 {spark(*clash1, 1.45)}
 {spark(*clash2, 4.9, 1.2)}
 {flicker_spark(390 + 10 + 12 + 98 * math.cos(math.radians(-75)), GROUND - 46 + 98 * math.sin(math.radians(-75)), 2.9, 3.95)}
-{label(215, names["obi"], "#4BD5EE")}
 {label(370, names["yoda"], "#8FE08A")}
-{label(548, names["emp"], "#FF5A5A")}
-{label(725, names["vader"], "#FF6B6B")}
+{label(560, names["emp"], "#FF5A5A")}
 </g>
 </g>
 <rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="none" stroke="{YELLOW}" stroke-opacity="0.45"/>

@@ -22,10 +22,10 @@
 <img src="assets/divider.svg" alt="" width="100%"/>
 </div>
 
-<h2 align="center"><img src="assets/h-duel.svg" alt="O Duelo Da Força" width="100%"/></h2>
+<h2 align="center"><img src="assets/h-duel.svg" alt="Os Duelos Da Força" width="100%"/></h2>
 
 <p align="center">
-  <img src="assets/duelo.svg" alt="Duelo de sabres: Mestre Yoda contra o Imperador Palpatine, com Obi-Wan Kenobi guardando o Mestre e Darth Vader guardando o Imperador" width="100%"/>
+  <img src="assets/duelo.svg" alt="Dois duelos de sabres ao mesmo tempo: Obi-Wan Kenobi contra Darth Vader e Mestre Yoda contra o Imperador Palpatine" width="100%"/>
 </p>
 
 <div align="center">
