@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/crawl.svg" alt="Há muito tempo, numa galáxia muito, muito distante... Vinícius França, desenvolvedor de software" width="100%"/>
+<img src="assets/crawl.svg" alt="Há muito tempo, numa galáxia muito, muito distante... Vinícius França, Backend e Full Stack" width="100%"/>
 
 <br/>
 
@@ -15,7 +15,7 @@
 <h2 align="center"><img src="assets/h-transmission.svg" alt="Transmissão Recebida" width="100%"/></h2>
 
 <p align="center">
-  <img src="assets/transmission.svg" alt="Transmissão recebida: Vinícius França, Sistemas de Informação no CIn-UFPE, desenvolvedor Backend e Full Stack, Recife, Brasil" width="100%"/>
+  <img src="assets/transmission.svg" alt="Transmissão recebida: Vinícius França, Sistemas de Informação no CIn-UFPE, dev Backend e Full Stack, Recife, Brasil" width="100%"/>
 </p>
 
 <div align="center">

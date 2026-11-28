@@ -12,7 +12,7 @@ TEXTS = {
     "pt": {
         "intro1": "Há muito tempo, numa galáxia",
         "intro2": "muito, muito distante....",
-        "logo_sub": "DESENVOLVEDOR DE SOFTWARE",
+        "logo_sub": "BACKEND & FULL STACK",
         "crawl": [
             ("EPISÓDIO IX", "head"),
             ("O LEGADO CONTRA-ATACA", "title"),
@@ -88,7 +88,7 @@ TEXTS = {
         "tx_rows": [
             ("NOME", "Vinícius França"),
             ("ORDEM", "Sistemas de Informação @ CIn-UFPE"),
-            ("CLASSE", "Desenvolvedor Backend e Full Stack"),
+            ("CLASSE", "Dev Backend e Full Stack"),
             ("FOCO", "Clean Architecture · Sistemas Escaláveis · FinTech"),
             ("MISSÃO", "Transformar dados em decisões, um commit limpo de cada vez"),
             ("BASE", "Recife, Brasil"),
@@ -124,12 +124,12 @@ TEXTS = {
         ],
         "quote_who_prefix": "",
         # textos alternativos (acessibilidade) usados no README e nos SVGs
-        "alt_crawl": "Há muito tempo, numa galáxia muito, muito distante... Vinícius França, desenvolvedor de software",
+        "alt_crawl": "Há muito tempo, numa galáxia muito, muito distante... Vinícius França, Backend e Full Stack",
         "alt_divider": "Duelo de sabres de luz",
         "alt_followers": "Seguidores",
         "alt_squadron": "Esquadrão: CIn-UFPE",
         "alt_mission": "Missão atual: meridian-wealth",
-        "alt_transmission": "Transmissão recebida: Vinícius França, Sistemas de Informação no CIn-UFPE, desenvolvedor Backend e Full Stack, Recife, Brasil",
+        "alt_transmission": "Transmissão recebida: Vinícius França, Sistemas de Informação no CIn-UFPE, dev Backend e Full Stack, Recife, Brasil",
         "alt_cast": "R2-D2, C-3PO, Darth Vader, Han Solo e Chewbacca",
         "alt_arsenal": "Arsenal: Java, Spring Boot, Go, Python, JavaScript, HTML5, CSS3, Three.js, ECharts, Leaflet, PostgreSQL, TimescaleDB, Redis, RabbitMQ, Docker, GitHub Actions e Prometheus",
         "alt_rank": "Ficha do Jedi: patente, nível e XP",
@@ -143,7 +143,7 @@ TEXTS = {
     "en": {
         "intro1": "A long time ago in a galaxy",
         "intro2": "far, far away....",
-        "logo_sub": "SOFTWARE DEVELOPER",
+        "logo_sub": "BACKEND & FULL STACK",
         "crawl": [
             ("EPISODE IX", "head"),
             ("THE LEGACY STRIKES BACK", "title"),
@@ -220,7 +220,7 @@ TEXTS = {
         "tx_rows": [
             ("NAME", "Vinícius França"),
             ("ORDER", "Information Systems @ CIn-UFPE"),
-            ("CLASS", "Backend & Full Stack Developer"),
+            ("CLASS", "Backend & Full Stack Dev"),
             ("FOCUS", "Clean Architecture · Scalable Systems · FinTech"),
             ("MISSION", "Turn data into decisions, one clean commit at a time"),
             ("BASE", "Recife, Brazil"),
@@ -255,12 +255,12 @@ TEXTS = {
             "LETTERING: SF DISTANT GALAXY (SHYFONTS, FREEWARE, PERSONAL USE) AND NEWS CYCLE (OFL).",
         ],
         "quote_who_prefix": "",
-        "alt_crawl": "A long time ago in a galaxy far, far away... Vinícius França, Software Developer",
+        "alt_crawl": "A long time ago in a galaxy far, far away... Vinícius França, Backend and Full Stack",
         "alt_divider": "Lightsaber duel divider",
         "alt_followers": "Followers",
         "alt_squadron": "Squadron: CIn-UFPE",
         "alt_mission": "Current mission: meridian-wealth",
-        "alt_transmission": "Incoming transmission: Vinícius França, Information Systems at CIn-UFPE, Backend and Full Stack Developer, Recife, Brazil",
+        "alt_transmission": "Incoming transmission: Vinícius França, Information Systems at CIn-UFPE, Backend and Full Stack Dev, Recife, Brazil",
         "alt_cast": "R2-D2, C-3PO, Darth Vader, Han Solo and Chewbacca",
         "alt_arsenal": "Arsenal: Java, Spring Boot, Go, Python, JavaScript, HTML5, CSS3, Three.js, ECharts, Leaflet, PostgreSQL, TimescaleDB, Redis, RabbitMQ, Docker, GitHub Actions and Prometheus",
         "alt_rank": "Jedi dossier: rank, level and XP",
