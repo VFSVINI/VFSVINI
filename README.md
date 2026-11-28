@@ -25,7 +25,7 @@
 <h2 align="center"><img src="assets/h-duel.svg" alt="O Duelo Da Força" width="100%"/></h2>
 
 <p align="center">
-  <img src="assets/duelo.svg" alt="Duelo de sabres: Mestre Yoda contra o Imperador Palpatine, com Obi-Wan Kenobi e Luke Skywalker de guarda" width="100%"/>
+  <img src="assets/duelo.svg" alt="Duelo de sabres: Mestre Yoda contra o Imperador Palpatine, com Obi-Wan Kenobi guardando o Mestre e Darth Vader guardando o Imperador" width="100%"/>
 </p>
 
 <div align="center">

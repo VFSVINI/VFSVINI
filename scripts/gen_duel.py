@@ -260,6 +260,36 @@ def jedi(cx, mirror, cloak, tunic, belt, hair, beard, saber_color, core, name_co
 </g></g>"""
 
 
+def vader(cx):
+    """Darth Vader de guarda-costas do Imperador: de frente para a esquerda, sabre aceso ao lado."""
+    return f"""<g transform="translate({cx} {GROUND}) scale(-0.9 0.9)">
+<ellipse cx="0" cy="2" rx="56" ry="6" fill="#000" opacity="0.6"/>
+<rect x="34.5" y="-212" width="25" height="146" rx="12" fill="#ff2a2a" filter="url(#bl)" opacity="0.9"><animate attributeName="opacity" values="0.9;0.55;0.95;0.7;0.9" dur="0.9s" repeatCount="indefinite"/></rect>
+<path d="M-40 -144L-66 0L66 0L40 -144Z" fill="#0a0a10"><animate attributeName="d" values="M-40 -144L-66 0L66 0L40 -144Z;M-40 -144L-62 0L70 0L40 -144Z;M-40 -144L-66 0L66 0L40 -144Z" dur="3.8s" repeatCount="indefinite"/></path>
+<rect x="-20" y="-40" width="17" height="40" rx="5" fill="#101018"/><rect x="3" y="-40" width="17" height="40" rx="5" fill="#101018"/>
+<g>{a_translate([(0, 0, 0), (1.5, 0, -1.8), (3.0, 0, 0), (4.5, 0, -1.8), (6.0, 0, 0), (7.0, 0, 0)])}
+<rect x="43.5" y="-212" width="7" height="140" rx="3.5" fill="#ffe3e3" stroke="#ff2a2a" stroke-width="1.5"/>
+<rect x="42" y="-86" width="10" height="30" rx="2" fill="#9aa3b2"/><rect x="42" y="-76" width="10" height="3" fill="#4a5160"/><rect x="42" y="-68" width="10" height="3" fill="#4a5160"/>
+<rect x="-36" y="-146" width="72" height="76" rx="12" fill="#15151c"/>
+<rect x="-17" y="-126" width="34" height="26" rx="3" fill="#262633" stroke="#3a3a4a"/>
+<circle cx="-9" cy="-118" r="3" fill="#ff3b3b"><animate attributeName="opacity" values="1;0.2;1" dur="1.1s" repeatCount="indefinite"/></circle>
+<circle cx="0" cy="-118" r="3" fill="#4bd5ee"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.7s" repeatCount="indefinite"/></circle>
+<circle cx="9" cy="-118" r="3" fill="#4cff4c"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+<rect x="-12" y="-110" width="24" height="4" rx="1" fill="#5a5a6e"/>
+<rect x="-36" y="-76" width="72" height="10" fill="#2a2a35"/><rect x="-7" y="-75" width="14" height="8" rx="2" fill="#aeb6c4"/>
+<rect x="-56" y="-140" width="16" height="66" rx="8" fill="#101018"/><rect x="39" y="-140" width="16" height="62" rx="8" fill="#101018"/>
+<path d="M-27 -162C-33 -204 -15 -220 0 -220C15 -220 33 -204 27 -162L17 -148L-17 -148Z" fill="#0d0d13"/>
+<path d="M-23 -168L-36 -144L36 -144L23 -168Z" fill="#12121a"/>
+<ellipse cx="-8" cy="-206" rx="9" ry="14" fill="#fff" opacity="0.07"/>
+<ellipse cx="-11" cy="-184" rx="8" ry="6" fill="#1b1b24" stroke="#3b3b4b" stroke-width="1.5" transform="rotate(12 -11 -184)"/>
+<ellipse cx="11" cy="-184" rx="8" ry="6" fill="#1b1b24" stroke="#3b3b4b" stroke-width="1.5" transform="rotate(-12 11 -184)"/>
+<path d="M-3.5 -176L0 -168L3.5 -176Z" fill="#2c2c38"/>
+<rect x="-10" y="-164" width="20" height="12" rx="2" fill="#2c2c38"/>
+<path d="M-6 -163V-153M-2 -163V-153M2 -163V-153M6 -163V-153" stroke="#555566" stroke-width="1.2"/>
+<path d="M-20 -154L-24 -146M20 -154L24 -146" stroke="#333342" stroke-width="2"/>
+</g></g>"""
+
+
 def label(cx, text, color):
     return text_path(GOTHIC, text, 15, 3, cx, 322, color, "middle")
 
@@ -285,17 +315,19 @@ def build():
 <ellipse cx="300" cy="260" rx="260" ry="90" fill="url(#glowL)"/><ellipse cx="620" cy="260" rx="260" ry="90" fill="url(#glowR)"/>
 {starfield(rng, 90)}
 <rect x="0" y="{GROUND + 1}" width="{W}" height="2" fill="url(#floorD)"/>
-{jedi(110, False, "#5d4527", "#c9ab78", "#4a3320", "#8a5a2b", "#b9824a", "#5ab8ff", "#e6f4ff", "#4bd5ee")}
-{jedi(790, True, "#101018", "#1b1b23", "#3a3a46", "#d6b06a", None, "#4cff4c", "#e6ffe6", "#4cff4c")}
+<g transform="translate(-32 0)">
+{jedi(245, False, "#5d4527", "#c9ab78", "#4a3320", "#8a5a2b", "#b9824a", "#5ab8ff", "#e6f4ff", "#4bd5ee")}
+{vader(705)}
 {yoda(clash1, clash2)}
 {emperor(clash1, clash2, rng)}
 {spark(*clash1, 1.45)}
 {spark(*clash2, 4.9, 1.2)}
 {flicker_spark(390 + 10 + 12 + 98 * math.cos(math.radians(-75)), GROUND - 46 + 98 * math.sin(math.radians(-75)), 2.9, 3.95)}
-{label(110, names["obi"], "#4BD5EE")}
-{label(345, names["yoda"], "#8FE08A")}
-{label(582, names["emp"], "#FF5A5A")}
-{label(790, names["luke"], "#4CFF4C")}
+{label(215, names["obi"], "#4BD5EE")}
+{label(370, names["yoda"], "#8FE08A")}
+{label(548, names["emp"], "#FF5A5A")}
+{label(725, names["vader"], "#FF6B6B")}
+</g>
 </g>
 <rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="none" stroke="{YELLOW}" stroke-opacity="0.45"/>
 </svg>
