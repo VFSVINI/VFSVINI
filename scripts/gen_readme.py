@@ -47,7 +47,7 @@ def build():
 {heading("film")}
 
 <p align="center">
-  <a href="https://raw.githubusercontent.com/VFSVINI/VFSVINI/main/assets/duelo3d.webp"><img src="assets/duelo3d-poster.jpg" alt="{T["alt_film"]}" width="100%"/></a>
+  <a href="https://github.com/VFSVINI/VFSVINI/blob/main/assets/duelo3d.webp"><img src="assets/duelo3d-poster.jpg" alt="{T["alt_film"]}" width="100%"/></a>
 </p>
 
 {DIV}
